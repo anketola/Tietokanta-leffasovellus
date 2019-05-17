@@ -22,3 +22,5 @@ Keskeisiä toimintoja:
 * (mahdollisesti jotain yleistä statistiikkaa)
 
 ## Alustava tietokantakaavio
+
+![Hahmotelma](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/dokumentaatio/hahmotelma_tietokanta.jpg)
