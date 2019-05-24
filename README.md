@@ -29,4 +29,4 @@ https://limitless-chamber-60577.herokuapp.com/
 
 [Käyttötapaukset](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/kayttotapaukset.md)
 
-[Hahmotelma tietokantakaaviosta](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/hahmotelma_tietokanta.jpg)
+[Hahmotelma tietokantakaaviosta](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/tietokantakaavio.md)
