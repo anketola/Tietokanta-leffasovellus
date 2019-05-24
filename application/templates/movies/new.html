@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<h1>Lisää uusi elokuva</h1>
+
+<form method="POST" action="{{ url_for('movies_create') }}">
+  Nimi: <br />
+  <input type="text" name="name"/><br />
+  Kuvaus: <br />
+  <input type="text" name="description"/><br /> <br />
+  <input type="submit" value="Lisää uusi elokuva"/>
+</form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1>Muokkaa elokuvan tietoja</h1>
+
+<form method="POST" action="{{ url_for('movies_edit_entry', movie_id = movie.id) }}">
+    Nimi:<br />
+    <input type="text" name="name" value="{{ movie.name }}"><br />
+    Kuvaus:<br />
+    <input type="text" name="description" value="{{ movie.description }}"><br /><br />
+    <input type="submit" value="Tallenna muutokset">
+</form>
+
+
+{% endblock %}
