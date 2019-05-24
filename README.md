@@ -21,6 +21,10 @@ Keskeisiä toimintoja:
 * Elokuvien haku nimellä, suodattaminen kategorialla
 * (mahdollisesti jotain yleistä statistiikkaa)
 
+## Sovellus Herokussa
+
+https://limitless-chamber-60577.herokuapp.com/
+
 ## Alustava tietokantakaavio
 
 ![Hahmotelma](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/dokumentaatio/hahmotelma_tietokanta.jpg)
