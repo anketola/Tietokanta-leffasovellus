@@ -4,10 +4,36 @@
 <h1>Lisää uusi elokuva</h1>
 
 <form method="POST" action="{{ url_for('movies_create') }}">
-  Nimi: <br />
-  <input type="text" name="name"/><br />
-  Kuvaus: <br />
-  <input type="text" name="description"/><br /> <br />
-  <input type="submit" value="Lisää uusi elokuva"/>
+  <table>
+    <tr>
+      <td>
+        {{ form.name.label  }}
+      </td>
+      <td>
+        {{ form.name(size=30) }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.description.label  }}
+      </td>
+      <td>
+        {{ form.description(cols="30", rows="15") }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Lisää uusi elokuva" />
+      </td>
+    </tr>
+  </table>
+
 </form>
 {% endblock %}

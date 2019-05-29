@@ -1,6 +1,8 @@
-from application import app, db
 from flask import render_template, request, url_for, redirect
+
+from application import app, db
 from application.movies.models import Movie
+from application.movies.forms import MovieForm
 
 @app.route("/movies", methods=["GET"])
 def movies_index():
@@ -8,7 +10,7 @@ def movies_index():
 
 @app.route("/movies/new/")
 def movies_form():
-    return render_template("movies/new.html")
+    return render_template("movies/new.html", form = MovieForm())
 
 @app.route("/movies/<movie_id>")
 def movies_edit_form(movie_id):
@@ -26,9 +28,12 @@ def movies_edit_entry(movie_id):
 
 @app.route("/movies/", methods=["POST"])
 def movies_create():
-    print(request.form.get("name"))
+    form = MovieForm(request.form)
     
-    m = Movie(request.form.get("name"), request.form.get("description"))
+    if not form.validate():
+        return render_template("movies/new.html", form = form)
+
+    m = Movie(form.name.data, form.description.data)
 
     db.session().add(m)
     db.session().commit()

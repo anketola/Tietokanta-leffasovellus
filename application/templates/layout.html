@@ -10,6 +10,13 @@
       <a href="/">Etusivu</a> |
       <a href="{{ url_for('movies_index') }}">Listaa elokuvat</a> |
       <a href="{{ url_for('movies_form') }}">Lisää elokuva</a> |
+      {% if current_user.is_authenticated %}
+      <span>
+	      Kirjautunut tunnuksella {{ current_user.username }}. | <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a> |
+      </span>
+      {% else %}
+      <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+      {% endif %}
     </header>
     {% block body %}
       <p>
