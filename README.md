@@ -25,6 +25,8 @@ Keskeisiä toimintoja:
 
 https://limitless-chamber-60577.herokuapp.com/
 
-## Alustava tietokantakaavio
+## Dokumentaatio
 
-![Hahmotelma](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/dokumentaatio/hahmotelma_tietokanta.jpg)
+[Käyttötapaukset](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/kayttotapaukset.md)
+
+[Hahmotelma tietokantakaaviosta](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/tietokantakaavio.md)
