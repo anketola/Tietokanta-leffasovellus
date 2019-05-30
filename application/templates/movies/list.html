@@ -8,8 +8,10 @@
   <li style="padding-bottom: 10px">
     <strong>Nimi: </strong>{{ movie.name }} <br />
     <strong>Kuvaus: </strong>{{ movie.description }} <br />
-    <a href="{{ url_for('movies_edit_form', movie_id = movie.id) }}">Muokkaa</a>
-
+    <a href="{{ url_for('movies_edit_form', movie_id = movie.id) }}">Muokkaa</a><br />
+    <form method="POST" action="{{ url_for('movies_delete', movie_id = movie.id) }}">
+      <input type="submit" value="Poista" />
+    </form>
   </li>
   {% endfor %}
 </ul>

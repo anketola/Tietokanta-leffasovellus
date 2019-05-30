@@ -27,6 +27,13 @@
       <td>
         {{ form.description(cols="30", rows="15") }}
       </td>
+      <td>
+        <ul>
+          {% for error in form.description.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td colspan="2">

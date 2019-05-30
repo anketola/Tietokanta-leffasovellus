@@ -13,7 +13,7 @@
       <a href="{{ url_for('accounts_form') }}">Rekisteröidy</a> |
       {% if current_user.is_authenticated %}
       <span>
-	      Kirjautunut tunnuksella {{ current_user.username }} | <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a> |
+	      Olet kirjautunut tunnuksella <strong>{{ current_user.username }}</strong> | <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a> |
       </span>
       {% else %}
       <a href="{{ url_for('auth_login') }}">Kirjaudu</a>

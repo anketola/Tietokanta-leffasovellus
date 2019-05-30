@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 
+
 {% block body %}
+
+<h1>Kirjaudu sisään</h1>
+
 {{ error }}
 <form method="POST" action="{{ url_for('auth_login') }}">
   <table>
