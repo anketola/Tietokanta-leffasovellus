@@ -25,6 +25,20 @@ Keskeisiä toimintoja:
 
 https://limitless-chamber-60577.herokuapp.com/
 
+### Testitunnukset
+
+Sovellus sisältää rekisteröitymismahdollisuuden. Halutessaan voi käyttää myös seuraavia testitunnuksia
+
+Käyttäjänimi:
+```
+testitunnus
+```
+Salasana:
+```
+testitunnus
+```
+
+
 ## Dokumentaatio
 
 [Käyttötapaukset](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/kayttotapaukset.md)
