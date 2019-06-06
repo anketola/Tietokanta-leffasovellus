@@ -7,6 +7,7 @@
   {% for movie in movies %}
   <li style="padding-bottom: 10px">
     <strong>Nimi: </strong>{{ movie.name }} <br />
+    <strong>Julkaisuvuosi: </strong>{{ movie.released }} <br />
     <strong>Kuvaus: </strong>{{ movie.description }} <br />
     <a href="{{ url_for('movies_edit_form', movie_id = movie.id) }}">Muokkaa tietoja</a><br />
     <a href="{{ url_for('reviews_form', movie_id = movie.id) }}">Kirjoita arvostelu</a><br />

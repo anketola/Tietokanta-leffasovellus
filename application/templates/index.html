@@ -3,13 +3,33 @@
 
 {% block body %}
   
-<h1>Etappi 3</h1>
+<h1>Etappi 3 + 4</h1>
   <ul>
     <li>Lomakkeet käyttävät WTFormia ja niihin sisältyy validointi.</li>
     <li>Käyttäjä voi sekä rekisteröityä että kirjautua. Testitunnukset (saman asian voi tehdä vain rekisteöritymällä) löytyvät githubista README.md -tiedostosta.</li>
-    <li>Käytössä nyt kaksi tietokantaulua (elokuvat ja käyttäjä).</li>
+    <li>Käytössä kolme tietokohdetta (käyttäjä, elokuva ja arvostelu).</li>
     <li>Elokuvilla on nyt täysi CRUD (editointi ja poisto ovat listaustoiminnon takana)</li>
     <li>Herokussa nyt PostgreSQL</li>
+    <li>Monimutkaisempana yhteenvetokyselynä alla näkyvä listaus suosituimmista elokuvista</li>
+    <li>Bootstrap käytössä</li>
   </ul>
   
+  {% if topmovies is defined %}
+
+<h2>Suosituimmat elokuvat</h2>
+
+<table>
+  <tr>
+    <td>Elokuvan nimi</td>
+    <td>Keskiarvo</td>    
+  </tr>
+  {% for movie in topmovies %}
+  <tr>
+    <td>{{ movie.name }}</td>
+    <td>{{ movie.averagescore }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endif %}
 {% endblock %}

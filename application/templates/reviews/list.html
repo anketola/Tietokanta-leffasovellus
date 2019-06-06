@@ -6,6 +6,7 @@
 <ul>
     {% for review in reviews %}
     <li>
+        Kirjoittanut: {{ review.account.username }} <br />
         Arvosana: {{ review.rating }} <br />
         Arvostelu: {{ review.reviewtext }}
     </li>
