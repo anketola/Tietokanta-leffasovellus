@@ -20,7 +20,7 @@ def movies_edit_form(movie_id):
     
     m = Movie.query.get(movie_id)
 
-    form = EditMovieForm(name = m.name, description = m.description)
+    form = EditMovieForm(name = m.name, released = m.released, description = m.description)
 
     return render_template("movies/edit.html", form = form, movie = m)
 
@@ -30,10 +30,11 @@ def movies_edit_entry(movie_id):
     form = EditMovieForm(request.form)
 
     if not form.validate():
-        return render_template("movies/edit.html", form = form)
+        return render_template("movies/edit.html", form = form, movie = Movie.query.get(movie_id))
 
     m = Movie.query.get(movie_id)
     m.name = form.name.data
+    m.released = form.released.data
     m.description = form.description.data
 
     db.session().commit()
@@ -48,7 +49,7 @@ def movies_create():
     if not form.validate():
         return render_template("movies/new.html", form = form)
 
-    m = Movie(form.name.data, form.description.data)
+    m = Movie(form.name.data, form.released.data, form.description.data)
 
     db.session().add(m)
     db.session().commit()

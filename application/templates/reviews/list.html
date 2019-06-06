@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Arvostelut</h1>
+
+<ul>
+    {% for review in reviews %}
+    <li>
+        Arvosana: {{ review.rating }} <br />
+        Arvostelu: {{ review.reviewtext }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
