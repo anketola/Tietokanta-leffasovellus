@@ -18,7 +18,7 @@ class Movie(Base):
     
     @staticmethod
     def list_movies_with_highest_scores():
-        stmt = text("SELECT Movie.name, AVG(Review.rating) FROM MOVIE"
+        stmt = text("SELECT Movie.name, CAST(AVG(Review.rating) AS DECIMAL(10,2)) FROM MOVIE"
                     " INNER JOIN Review on Movie.id = Review.movie_id"
                     " GROUP BY Movie.id"
                     " ORDER BY AVG(Review.rating) DESC"
