@@ -1,22 +1,44 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h1>Listaus elokuvista</h1>
-
-<ul>
+<div class="container">
+  <h1>Listaus elokuvista</h1>
+  <div class="row">
+      <div class="col-4">
+        <strong>Nimi </strong>
+      </div>
+      <div class="col-2">
+          <strong>Julkaisuvuosi </strong>
+      </div>
+      <div class="col-6">
+          <strong>Kuvaus</strong>
+      </div>
+    </div>
   {% for movie in movies %}
-  <li style="padding-bottom: 10px">
-    <strong>Nimi: </strong>{{ movie.name }} <br />
-    <strong>Julkaisuvuosi: </strong>{{ movie.released }} <br />
-    <strong>Kuvaus: </strong>{{ movie.description }} <br />
-    <a href="{{ url_for('movies_edit_form', movie_id = movie.id) }}">Muokkaa tietoja</a><br />
-    <a href="{{ url_for('reviews_form', movie_id = movie.id) }}">Kirjoita arvostelu</a><br />
-    <a href="{{ url_for('reviews_for_movie', movie_id = movie.id) }}">Lue arvosteluita</a><br />
-    <form method="POST" action="{{ url_for('movies_delete', movie_id = movie.id) }}">
-      <input type="submit" value="Poista" />
-    </form>
-  </li>
+  <div class="row" style="background-color: #659DBD; margin-bottom: 0px">
+    <div class="col-4">
+        <strong>{{ movie.name }}</strong>
+    </div>
+    <div class="col-2">
+        {{ movie.released }} 
+    </div>
+    <div class="col-6">
+        {{ movie.description }} 
+    </div>
+  </div>
+  <div class="row" style="background-color: #e3f2fd; margin-bottom: 10px">
+    <div class="col-6">
+      <a href="{{ url_for('movies_edit_form', movie_id = movie.id) }}">Muokkaa tietoja</a> <br />
+      <a href="{{ url_for('reviews_form', movie_id = movie.id) }}">Kirjoita arvostelu</a> <br />
+      <a href="{{ url_for('reviews_for_movie', movie_id = movie.id) }}">Lue arvosteluita</a> <br />
+    </div>
+    <div class="col-6">
+      <form method="POST" action="{{ url_for('movies_delete', movie_id = movie.id) }}">
+          <button type="submit" class="btn btn-danger">Poista</button>
+      </form>
+    </div>
+  </div>
   {% endfor %}
-</ul>
 
+</div>
 {% endblock %}

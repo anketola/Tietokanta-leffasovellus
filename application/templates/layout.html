@@ -7,19 +7,39 @@
   </head>
 
   <body>
-    <header>
-      <a href="/">Etusivu</a> |
-      <a href="{{ url_for('movies_index') }}">Listaa elokuvat</a> |
-      <a href="{{ url_for('movies_form') }}">Lisää elokuva</a> |
-      <a href="{{ url_for('accounts_form') }}">Rekisteröidy</a> |
-      {% if current_user.is_authenticated %}
-      <span>
-	      Olet kirjautunut tunnuksella <strong>{{ current_user.username }}</strong> | <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a> |
-      </span>
-      {% else %}
-      <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
-      {% endif %}
-    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+      <a class="navbar-brand" href="#">Leffa-arvostelut</a>
+      
+        
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('index') }} ">Etusivu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('movies_index') }} ">Listaa elokuvat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('movies_form') }} ">Lisää elokuva</a>
+          </li>
+          <li class="nav-item"></li>
+            <a class="nav-link" href="{{ url_for('accounts_form') }}">Rekisteröidy</a>
+          </li>
+        </ul>
+        
+        <div class="form-inline mt-2 mt-md-0">
+          <ul class="navbar-nav">
+          {% if current_user.is_authenticated %}
+            <span class="navbar-text" style="padding-right: 5px">Olet kirjautunut tunnuksella<strong> {{ current_user.username }}</strong></span>
+            <a class="btn btn-danger" href="{{ url_for('auth_logout') }}" role="button">Kirjaudu ulos</a>
+          {% else %}
+            <a class="btn btn-success" href="{{ url_for('auth_login') }}" role="button">Kirjaudu sisään</a>
+          {% endif %}
+          </ul>
+        </div>
+     
+    </nav>
+    
     {% block body %}
       <p>
         Content.

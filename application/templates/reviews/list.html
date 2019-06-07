@@ -1,15 +1,26 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h1>Arvostelut</h1>
+<div class="container">
+<div class="row" style="margin-bottom: 5px">
+    <div class="col-12">
+    <h1>Arvostelut</h1>
+    <strong>Elokuvan nimi: </strong>{{ movie.name }} <br />
+    <strong>Julkaisuvuosi: </strong>{{ movie.released }} <br />
+    <strong>Kuvaus: </strong>{{ movie.description }} <br />
+    </div>
+</div>
 
-<ul>
-    {% for review in reviews %}
-    <li>
+{% for review in reviews %}
+<div class="row" style="background-color: #e3f2fd; margin-bottom: 2px">
+    <div class="col-12">
         Kirjoittanut: {{ review.account.username }} <br />
         Arvosana: {{ review.rating }} <br />
         Arvostelu: {{ review.reviewtext }}
-    </li>
-    {% endfor %}
-</ul>
+    </div>
+</div>
+{% endfor %}
+
+
+</div>
 {% endblock %}
