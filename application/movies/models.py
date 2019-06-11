@@ -32,3 +32,16 @@ class Movie(Base):
             response.append({"name":row[0], "averagescore":row[1]})
 
         return response
+    
+    @staticmethod
+    def list_latest_movie_additions():
+        stmt = text("SELECT Movie.id, Movie.name, Movie.date_created FROM Movie"
+                    " ORDER BY Movie.date_created DESC"
+                    " LIMIT 5")
+        res = db.engine.execute(stmt)
+        response = []
+
+        for row in res:
+            response.append({"id":row[0], "name":row[1], "added":row[2]})
+        
+        return response

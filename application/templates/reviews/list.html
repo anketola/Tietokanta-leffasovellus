@@ -7,11 +7,12 @@
     <h1>Arvostelut</h1>
     <strong>Elokuvan nimi: </strong>{{ movie.name }} <br />
     <strong>Julkaisuvuosi: </strong>{{ movie.released }} <br />
-    <strong>Kuvaus: </strong>{{ movie.description }} <br />
     <strong>Kategoria(t):</strong>
     {% for id in movie.categories %}
         {{ id.name }}
     {% endfor %}
+    <br />
+    <strong>Kuvaus: </strong>{{ movie.description }} <br />
 </div>
 </div>
 

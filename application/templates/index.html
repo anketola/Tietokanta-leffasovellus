@@ -2,27 +2,52 @@
 
 
 {% block body %}
-<div class="jumbotron">
-  <h1>Etappi 3 + 4</h1>
-    <ul>
-      <li>Lomakkeet käyttävät WTFormia ja niihin sisältyy validointi.</li>
-      <li>Käyttäjä voi sekä rekisteröityä että kirjautua. Testitunnukset (saman asian voi tehdä vain rekisteöritymällä) löytyvät githubista README.md -tiedostosta.</li>
-      <li>Käytössä kolme tietokohdetta (käyttäjä, elokuva ja arvostelu).</li>
-      <li>Elokuvilla on nyt täysi CRUD (editointi ja poisto ovat listaustoiminnon takana)</li>
-      <li>Herokussa nyt PostgreSQL</li>
-      <li>Monimutkaisempana yhteenvetokyselynä alla näkyvä listaus suosituimmista elokuvista</li>
-      <li>Bootstrap käytössä, ulkoasua säädelty jonkin verran</li>
-      <li>Toiminnallisuudet vähän vaiheissaan, lisätään koko ajan uutta. Arvostelulistaus ja kirjoittaminen löytyy toistaiseksi vain yläpalkin leffalistauksen kautta</li>
-    </ul>
-  </div>
-    <div class="container">
+
+<div class="container-fluid">
   <div class="row">
+    <div class="col-6">
+      <h2>Uusimmat elokuvat</h2>
+      <table class="table table-striped">
+        <tr>
+          <th>Nimi</th>
+          <th>Lisätty</th>
+        </tr>
+        {% for movie in latestmovies %}
+        <tr>
+          <td>{{ movie.name }}</td>
+          <td>{{ movie.added }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    
+    <div class="col-6">
+      <h2>Uusimmat arvostelut</h2>
+      <table class="table table-striped">
+          <tr>
+            <th>Elokuva</th>
+            <th>Arvosana</th>
+            <th>Lisätty</th>
+            <th>Lue arvostelu</th>
+          </tr>
+          {% for review in latestreviews %}
+          <tr>
+            <td>{{ review.name }}</td>
+            <td>{{ review.rating }}</td>
+            <td>{{ review.added }}</td>
+            <td>
+              <a class="btn btn-primary" href="{{ url_for('reviews_for_movie', movie_id = review.movie_id) }}" role="button">Lue arvostelu</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+    </div>
   </div>
 
   {% if topmovies is defined %}
 
   <div class="row">
-      <h2>Suosituimmat elokuvat</h2>
+    <h2>Suosituimmat elokuvat</h2>
   </div>  
   <div class="row">
     <div class="col-4" style="background-color: #659DBD; margin-bottom: 2px; padding-top: 2px">
