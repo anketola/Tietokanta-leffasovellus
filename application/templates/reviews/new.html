@@ -11,8 +11,21 @@
             {{ form.rating.label  }}
         </td>
         <td>
-            {{ form.rating }}
-        </td>
+          
+          <table class="table table-striped">
+            <tr>
+              {% for ratingselection in form.rating %}
+              <th>{{ ratingselection.label }}</th>
+              {% endfor %}
+            </tr>
+            <tr>
+              {% for ratingselection in form.rating %}
+              <td>{{ ratingselection }}</th>
+              {% endfor %}
+            </tr>
+          </table>
+
+       </td>
         <td>
           <ul>
             {% for error in form.rating.errors %}

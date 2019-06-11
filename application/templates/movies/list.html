@@ -31,7 +31,9 @@
       {% if current_user.admin == True %}
       <a href="{{ url_for('movies_edit_form', movie_id = movie.id) }}">Muokkaa tietoja</a> <br />
       {% endif %}
+      {% if current_user.is_authenticated %}
       <a href="{{ url_for('reviews_form', movie_id = movie.id) }}">Kirjoita arvostelu</a> <br />
+      {% endif %}
       <a href="{{ url_for('reviews_for_movie', movie_id = movie.id) }}">Lue arvosteluita</a> <br />
     </div>
     <div class="col-6">

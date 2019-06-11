@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, TextAreaField, validators
+from wtforms import RadioField, TextAreaField, validators
 
 class ReviewForm(FlaskForm):
-    rating = IntegerField("Arvosana", [validators.NumberRange(min=1, max=5)])
+    rating = RadioField("Arvosana", coerce=int, choices=[(1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5")], validators=[validators.Required()])
     reviewtext = TextAreaField("Arvostelun teksti", [validators.Length(min=2, max=144)])
 
     class Meta:
