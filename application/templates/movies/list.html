@@ -28,14 +28,18 @@
   </div>
   <div class="row" style="background-color: #e3f2fd; margin-bottom: 10px">
     <div class="col-6">
+      {% if current_user.admin == True %}
       <a href="{{ url_for('movies_edit_form', movie_id = movie.id) }}">Muokkaa tietoja</a> <br />
+      {% endif %}
       <a href="{{ url_for('reviews_form', movie_id = movie.id) }}">Kirjoita arvostelu</a> <br />
       <a href="{{ url_for('reviews_for_movie', movie_id = movie.id) }}">Lue arvosteluita</a> <br />
     </div>
     <div class="col-6">
+      {% if current_user.admin == True %}
       <form method="POST" action="{{ url_for('movies_delete', movie_id = movie.id) }}">
           <button type="submit" class="btn btn-danger">Poista</button>
       </form>
+      {% endif %}
     </div>
   </div>
   {% endfor %}

@@ -19,9 +19,6 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('movies_index') }} ">Listaa elokuvat</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('movies_form') }} ">Lisää elokuva</a>
-          </li>
           <li class="nav-item"></li>
             <a class="nav-link" href="{{ url_for('accounts_form') }}">Rekisteröidy</a>
           </li>
@@ -40,6 +37,13 @@
      
     </nav>
     
+    {% if current_user.admin == True %}
+    
+    <p>Olet kirjautunut sisään ylläpitäjänä. Käytössäsi on työkaluja sovelluksen hallintaa varten.</p>
+    <a href="{{ url_for('movies_form') }} ">Lisää uusi elokuva</a>
+    
+    {% endif %}
+
     {% block body %}
       <p>
         Content.

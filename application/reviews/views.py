@@ -1,18 +1,18 @@
 from flask import render_template, request, url_for, redirect
-from flask_login import login_required, current_user
+from flask_login import current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.reviews.models import Review
 from application.movies.models import Movie
 from application.reviews.forms import ReviewForm
 
 @app.route("/reviews/new/<movie_id>", methods=["GET"])
-@login_required
+@login_required(role="USER")
 def reviews_form(movie_id):
     return render_template("reviews/new.html", form = ReviewForm(), movie = Movie.query.get(movie_id))
 
 @app.route("/reviews/new/<movie_id>", methods=["POST"])
-@login_required
+@login_required(role="USER")
 def reviews_create(movie_id):
     form = ReviewForm(request.form)
 
