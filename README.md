@@ -27,15 +27,18 @@ https://limitless-chamber-60577.herokuapp.com/
 
 ### Testitunnukset
 
-Sovellus sisältää rekisteröitymismahdollisuuden. Halutessaan voi käyttää myös seuraavia testitunnuksia
+Admin-tunnukset:
 
-Käyttäjänimi:
 ```
-testitunnus
+Käyttäjänimi: admin
+Salasana: admin
 ```
-Salasana:
+
+Sovellus sisältää rekisteröitymismahdollisuuden normaaleille käyttäjille. Halutessaan voi käyttää myös seuraavia testitunnuksia. 
+
 ```
-testitunnus
+Käyttäjänimi: testitunnus
+Salasana: testitunnus
 ```
 
 
