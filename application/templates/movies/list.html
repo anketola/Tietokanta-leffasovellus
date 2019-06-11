@@ -4,25 +4,33 @@
 <div class="container">
   <h1>Listaus elokuvista</h1>
   <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <strong>Nimi </strong>
       </div>
       <div class="col-2">
           <strong>Julkaisuvuosi </strong>
       </div>
-      <div class="col-6">
+      <div class="col-3">
+          <strong>Kategoria(t)</strong>
+      </div>
+      <div class="col-4">
           <strong>Kuvaus</strong>
       </div>
     </div>
   {% for movie in movies %}
   <div class="row" style="background-color: #659DBD; margin-bottom: 0px">
-    <div class="col-4">
+    <div class="col-3">
         <strong>{{ movie.name }}</strong>
     </div>
     <div class="col-2">
         {{ movie.released }} 
     </div>
-    <div class="col-6">
+    <div class="col-3">
+        {% for id in movie.categories %}
+            {{ id.name }}
+        {% endfor %}
+    </div>
+    <div class="col-4">
         {{ movie.description }} 
     </div>
   </div>

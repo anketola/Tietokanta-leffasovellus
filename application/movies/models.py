@@ -1,5 +1,5 @@
 from application import db
-from application.models import Base
+from application.models import Base, moviescategories
 
 from sqlalchemy.sql import text
 
@@ -10,6 +10,8 @@ class Movie(Base):
     description = db.Column(db.String(144), nullable=False)
 
     reviews = db.relationship("Review", backref='movie', lazy=True, cascade="all, delete-orphan")
+
+    moviescategories = db.relationship("Category", secondary = moviescategories, backref='movies')
 
     def __init__(self, name, released, description):
         self.name = name

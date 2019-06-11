@@ -3,6 +3,7 @@ from flask import render_template, request, url_for, redirect
 from application import app, db, login_required
 from application.movies.models import Movie
 from application.movies.forms import MovieForm, EditMovieForm
+from application.category.models import Category
 
 @app.route("/movies", methods=["GET"])
 def movies_index():
@@ -11,7 +12,11 @@ def movies_index():
 @app.route("/movies/new/")
 @login_required(role="ADMIN")
 def movies_form():
-    return render_template("movies/new.html", form = MovieForm())
+    form = MovieForm()
+    # Fills the choices based on database entries in Category
+    categories = Category.query.all()
+    form.category.choices = [(categorychoice.id, categorychoice.name) for categorychoice in categories]
+    return render_template("movies/new.html", form = form)
 
 @app.route("/movies/<movie_id>")
 @login_required(role="ADMIN")
@@ -45,13 +50,25 @@ def movies_edit_entry(movie_id):
 def movies_create():
     form = MovieForm(request.form)
     
+    # For a reason yet unknown, the form.validate returns and error without this
+    categories = Category.query.all()
+    form.category.choices = [(categorychoice.id, categorychoice.name) for categorychoice in categories]
+
     if not form.validate():
         return render_template("movies/new.html", form = form)
 
     m = Movie(form.name.data, form.released.data, form.description.data)
+    categories = form.category.data
 
     db.session().add(m)
     db.session().commit()
+
+    db.session().refresh(m)
+
+    for id in categories:
+        category = Category.query.get(id)
+        m.categories.append(category)
+        db.session.commit()
 
     return redirect(url_for("movies_index"))
 

@@ -8,7 +8,11 @@
     <strong>Elokuvan nimi: </strong>{{ movie.name }} <br />
     <strong>Julkaisuvuosi: </strong>{{ movie.released }} <br />
     <strong>Kuvaus: </strong>{{ movie.description }} <br />
-    </div>
+    <strong>Kategoria(t):</strong>
+    {% for id in movie.categories %}
+        {{ id.name }}
+    {% endfor %}
+</div>
 </div>
 
 {% for review in reviews %}
@@ -21,7 +25,7 @@
 </div>
 {% endfor %}
 {% if current_user.is_authenticated %}
-<a class="btn btn-primary" href="{{ url_for('auth_login') }}" role="button">Kirjoita uusi arvostelu</a>
+<a class="btn btn-primary" href="{{ url_for('reviews_form', movie_id = movie.id) }}" role="button">Kirjoita uusi arvostelu</a>
 {% endif %}
 </div>
 {% endblock %}
