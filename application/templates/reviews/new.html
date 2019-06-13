@@ -1,60 +1,51 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
-<h1>Lisää uusi arvostelu</h1>
-
-<form method="POST" action="{{ url_for('reviews_create', movie_id = movie.id) }}">
-    <table>
-      <tr>
-        <td>
-            {{ form.rating.label  }}
-        </td>
-        <td>
-          
-          <table class="table table-striped">
-            <tr>
-              {% for ratingselection in form.rating %}
-              <th>{{ ratingselection.label }}</th>
+<div class="container-fluid">
+  <div class="row" style="margin-top:50px">
+    <div class="col-12" style="text-align: center">
+      <h1 >Lisää uusi arvostelu</h1>
+      <span>Elokuva: {{ movie.name }}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <form method="POST" action="{{ url_for('reviews_create', movie_id = movie.id) }}">
+        <div class="form-group">
+          {{ form.rating.label  }}
+            <table class="table table-striped">
+              <tr>
+                {% for ratingselection in form.rating %}
+                <th>{{ ratingselection.label }}</th>
+                {% endfor %}
+              </tr>
+              <tr>
+                {% for ratingselection in form.rating %}
+                <td>{{ ratingselection }}</th>
+                {% endfor %}
+              </tr>
+            </table>
+              <ul>
+                {% for error in form.rating.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+          </div>
+          <div class="form-group">
+            {{ form.reviewtext.label }}
+            {{ form.reviewtext }}
+            <ul>
+              {% for error in form.reviewtext.errors %}
+              <li>{{ error }}</li>
               {% endfor %}
-            </tr>
-            <tr>
-              {% for ratingselection in form.rating %}
-              <td>{{ ratingselection }}</th>
-              {% endfor %}
-            </tr>
-          </table>
-
-       </td>
-        <td>
-          <ul>
-            {% for error in form.rating.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.reviewtext.label  }}
-        </td>
-        <td>
-          {{ form.reviewtext(cols="30", rows="15") }}
-        </td>
-        <td>
-          <ul>
-            {% for error in form.reviewtext.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <button type="submit" class="btn btn-primary">Lisää uusi arvostelu</button>
-        </td>
-      </tr>
-    </table>
-  
-  </form>
+            </ul>
+        </div>
+      <button type="submit" class="btn btn-primary">Lähetä arvostelu</button>
+      <a class="btn btn-danger" style="align-self: right" href="{{ url_for('reviews_for_movie', movie_id = movie.id) }}" role="button">Peruuta toiminto</a>
+    </form>
+    
+  </div>
+  </div>  
+</div>
 {% endblock %}
