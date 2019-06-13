@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container-fluid">
+  <div class="row" style="margin-top:50px">
+    <div class="col-12" style="text-align: center">
+      <h1 >Muokkaa arvostelua</h1>
+      <span>Elokuva: {{ movie.name }}</span><br />
+      <span>Arvostelun kirjoittaja: {{ review.account.username }}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <form method="POST" action="{{ url_for('reviews_edit_entry', movie_id = movie.id, review_id = review.id) }}">
+        <div class="form-group">
+          {{ form.rating.label  }}
+            <table class="table table-striped">
+              <tr>
+                {% for ratingselection in form.rating %}
+                <th>{{ ratingselection.label }}</th>
+                {% endfor %}
+              </tr>
+              <tr>
+                {% for ratingselection in form.rating %}
+                <td>{{ ratingselection }}</th>
+                {% endfor %}
+              </tr>
+            </table>
+              <ul>
+                {% for error in form.rating.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+          </div>
+          <div class="form-group">
+            {{ form.reviewtext.label }}
+            {{ form.reviewtext }}
+            <ul>
+              {% for error in form.reviewtext.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+        </div>
+      <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
+      <a class="btn btn-danger" style="align-self: right" href="{{ url_for('reviews_for_movie', movie_id = movie.id) }}" role="button">Peruuta toiminto</a>
+    </form>
+    
+  </div>
+  </div>  
+</div>
+{% endblock %}

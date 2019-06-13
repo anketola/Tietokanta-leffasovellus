@@ -21,7 +21,26 @@
     <div class="col-12">
         Kirjoittanut: {{ review.account.username }} <br />
         Arvosana: {{ review.rating }} <br />
-        Arvostelu: {{ review.reviewtext }}
+        Arvostelu: {{ review.reviewtext }} <br />
+        {% if (current_user.admin == True) or (current_user.id == review.account.id) %}
+        {% if current_user.id == review.account.id %}
+        <strong>Olet kirjoittanut tämän arvostelun ja voit muokata tai poistaa sen.</strong>
+        {% endif %}
+        <table>
+            <tr>
+                <td>
+                <form method="POST" action="{{ url_for('reviews_delete', movie_id = movie.id, review_id = review.id) }}">
+                    <button type="submit" class="btn btn-danger btn-sm">Poista</button>
+                </form>
+                </td>
+                <td>
+                <form method="GET" action="{{ url_for('reviews_edit_form', movie_id = movie.id, review_id = review.id) }}">
+                    <button type="submit" class="btn btn-warning btn-sm">Muokkaa</button>
+                </form>
+                </td>
+            </tr>
+        </table>
+       {% endif %}
     </div>
 </div>
 {% endfor %}
