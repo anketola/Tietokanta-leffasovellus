@@ -8,38 +8,48 @@
     <div class="col-6">
       <h2>Uusimmat elokuvat</h2>
       <table class="table table-striped">
-        <tr>
-          <th>Nimi</th>
-          <th>Lisätty</th>
-        </tr>
-        {% for movie in latestmovies %}
-        <tr>
-          <td>{{ movie.name }}</td>
-          <td>{{ movie.added }}</td>
-        </tr>
-        {% endfor %}
+        <caption>Viimeksi lisätyt elokuvat. Tutustu ja arvostele!</caption>
+        <thead style="background-color: #659DBD; color: whitesmoke">
+          <tr>
+            <th>Nimi</th>
+            <th>Lisätty</th>
+          </tr>
+        </thead>
+        <body>
+          {% for movie in latestmovies %}
+          <tr>
+            <td>{{ movie.name }}</td>
+            <td>{{ movie.added }}</td>
+          </tr>
+          {% endfor %}
+        </body>
       </table>
     </div>
     
     <div class="col-6">
       <h2>Uusimmat arvostelut</h2>
       <table class="table table-striped">
-          <tr>
-            <th>Elokuva</th>
-            <th>Arvosana</th>
-            <th>Lisätty</th>
-            <th>Lue arvostelu</th>
-          </tr>
-          {% for review in latestreviews %}
-          <tr>
-            <td>{{ review.name }}</td>
-            <td>{{ review.rating }}</td>
-            <td>{{ review.added }}</td>
-            <td>
-              <a class="btn btn-primary" href="{{ url_for('reviews_for_movie', movie_id = review.movie_id) }}" role="button">Lue arvostelu</a>
-            </td>
-          </tr>
-          {% endfor %}
+          <caption>Rekisteröityjen käyttäjien lisäämät uusimmat arvostelut. Lue oletko samaa mieltä!</caption>
+          <thead style="background-color: #659DBD; color: whitesmoke">
+            <tr>
+              <th>Elokuva</th>
+              <th>Arvosana</th>
+              <th>Lisätty</th>
+              <th>Lue arvostelu</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for review in latestreviews %}
+            <tr>
+              <td>{{ review.name }}</td>
+              <td>{{ review.rating }}</td>
+              <td>{{ review.added }}</td>
+              <td>
+                <a class="btn btn-secondary btn-sm" href="{{ url_for('reviews_for_movie', movie_id = review.movie_id) }}" role="button">Lue arvostelu</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
         </table>
     </div>
   </div>
@@ -47,27 +57,28 @@
   {% if topmovies is defined %}
 
   <div class="row">
-    <h2>Suosituimmat elokuvat</h2>
-  </div>  
-  <div class="row">
-    <div class="col-4" style="background-color: #659DBD; margin-bottom: 2px; padding-top: 2px">
-        <h4 style="color: white">Elokuvan nimi</h4>
-    </div>
-    <div class="col-4" style="background-color: #659DBD; margin-bottom: 2px; padding-top: 2px"">
-      <h4 style="color: white">Keskiarvo</h4>
-    </div>
+    <div class="col-2"></div>
+    <div class="col-8">
+      <h2 style="text-align: center">Suosituimmat elokuvat</h2>
+    <table class="table">
+      <caption>Parhaat arvostelut saaneet elokuvat.</caption>
+      <thead style="background-color: #659DBD; color: whitesmoke">
+        <tr>
+          <th>Elokuvan nimi</th>
+          <th>Keskiarvo</th>
+        </tr>
+      </thead>
+      <tbody style="background-color: #e3f2fd;">
+      {% for movie in topmovies %}
+      <tr>
+        <td>{{ movie.name }}</td>
+        <td>{{ movie.averagescore }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
   </div>
-  {% for movie in topmovies %}
-  <div class="row">
-      <div class="col-4" style="background-color: #e3f2fd; margin-bottom: 2px">
-          {{ movie.name }}
-      </div>
-      <div class="col-4" style="background-color: #e3f2fd; margin-bottom: 2px">
-        {{ movie.averagescore }}
-      </div>
-    </div>
-  {% endfor %}
-
-</div>
+  </div>  
+ </div>
 {% endif %}
 {% endblock %}

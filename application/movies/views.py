@@ -13,9 +13,11 @@ def movies_index():
 @login_required(role="ADMIN")
 def movies_form():
     form = MovieForm()
+    
     # Fills the choices based on database entries in Category
     categories = Category.query.all()
     form.category.choices = [(categorychoice.id, categorychoice.name) for categorychoice in categories]
+    
     return render_template("movies/new.html", form = form)
 
 @app.route("/movies/<movie_id>")
@@ -25,13 +27,21 @@ def movies_edit_form(movie_id):
     m = Movie.query.get(movie_id)
 
     form = EditMovieForm(name = m.name, released = m.released, description = m.description)
-
+    
+    # Fills the choices based on database entries in Category
+    categories = Category.query.all()
+    form.category.choices = [(categorychoice.id, categorychoice.name) for categorychoice in categories]
+    
     return render_template("movies/edit.html", form = form, movie = m)
 
 @app.route("/movies/edit/<movie_id>", methods=["POST"])
 @login_required(role="ADMIN")
 def movies_edit_entry(movie_id):
     form = EditMovieForm(request.form)
+
+    # Fills the choices list to prevent validation error
+    categories = Category.query.all()
+    form.category.choices = [(categorychoice.id, categorychoice.name) for categorychoice in categories]
 
     if not form.validate():
         return render_template("movies/edit.html", form = form, movie = Movie.query.get(movie_id))
@@ -40,6 +50,7 @@ def movies_edit_entry(movie_id):
     m.name = form.name.data
     m.released = form.released.data
     m.description = form.description.data
+    m.categories = form.category.data
 
     db.session().commit()
 
@@ -50,7 +61,7 @@ def movies_edit_entry(movie_id):
 def movies_create():
     form = MovieForm(request.form)
     
-    # For a reason yet unknown, the form.validate returns and error without this
+    # Fills the choices list to prevent validation error
     categories = Category.query.all()
     form.category.choices = [(categorychoice.id, categorychoice.name) for categorychoice in categories]
 

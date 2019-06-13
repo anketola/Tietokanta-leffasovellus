@@ -1,46 +1,40 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h1>Rekisteröi uusi käyttäjä</h1>
-
-<form method="POST" action="{{ url_for('accounts_create') }}">
-  <table>
-    <tr>
-      <td>
-        {{ form.username.label  }}
-      </td>
-      <td>
-        {{ form.username }}
-      </td>
-      <td>
+<div class="container-fluid">
+  <div class="row" style="margin-top:50px">
+    <div class="col-12">
+      <h1 style="text-align: center">Rekisteröidy käyttäjäksi</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5"></div>
+    <div class="col-2">
+      <form method="POST" action="{{ url_for('accounts_create') }}" style="margin-bottom: 10px; margin-top: 10px">
+        <div class="form-group">
+          {{ form.username.label  }}
+          {{ form.username }}
+        </div>
+        <div class="form-group">
+          {{ form.password.label  }}
+          {{ form.password }}
+        </div>
+        <button type="submit" class="btn btn-success">Rekisteröidy</button>
+      </form>
+      <small>Oletko jo rekisteröitynyt? <a href="{{ url_for('auth_login') }}">Kirjaudu sisään.</a></small>
+    </div>
+    <div class="col-5">
         <ul>
-          {% for error in form.username.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        {{ form.password.label  }}
-      </td>
-      <td>
-        {{ form.password }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.password.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <button type="submit" class="btn btn-primary">Rekisteröidy</button>
-      </td>
-    </tr>
-  </table>
-
-</form>
+            {% for error in form.username.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+         </ul>
+         <ul>
+            {% for error in form.password.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -17,7 +17,7 @@
 </div>
 
 {% for review in reviews %}
-<div class="row" style="background-color: #e3f2fd; margin-bottom: 2px">
+<div class="row" style="background-color: #e3f2fd; margin-bottom: 5px">
     <div class="col-12">
         Kirjoittanut: {{ review.account.username }} <br />
         Arvosana: {{ review.rating }} <br />
@@ -25,8 +25,14 @@
     </div>
 </div>
 {% endfor %}
+
+<div style="margin-top: 20px">
 {% if current_user.is_authenticated %}
 <a class="btn btn-primary" href="{{ url_for('reviews_form', movie_id = movie.id) }}" role="button">Kirjoita uusi arvostelu</a>
+{% else %}
+Haluatko kirjoittaa arvostelun? <a href="{{ url_for('auth_login') }}">Kirjaudu sisään</a> tai <a href="{{ url_for('accounts_form') }}">rekisteröidy</a> käyttäjäksi.
 {% endif %}
+</div>
+
 </div>
 {% endblock %}
