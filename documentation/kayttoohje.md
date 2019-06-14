@@ -34,7 +34,7 @@ Sovellus luo tietokantatalutut, mutta joudumme muokkaamaan niiden sisältöä en
 
 Paina Ctrl+C keskeyttääksei sovelluksen suorituksen. Siirry sen jälkeen seuraavaan osaan, jossa käsitellään käyttäjätunnusten luomista.
 
-### Käyttäjätunnusten luominen
+### Käyttäjätunnusten luominen paikallisesti
 
 Tässä käsitellään admin-tunnusten luomista paikallisesti. Huomaathan, että normaalikäyttäjien rekisteröinti onnistuu suoraan sovelluksen toiminnallisuuksia käyttämällä.
 
@@ -55,7 +55,7 @@ Voit sulkea SQLiten kirjoittamalla konsoliin
 .exit
 ```
 
-#### Lopputoimet
+### Lopputoimet
 
 Paikallisen asennuksen tulisi olla nyt valmis. Suljimme aiemmin sovelluksen suorituksen. Käynnistetään se uudestaan käskyllä
 
@@ -66,4 +66,58 @@ Avaa selain ja siirry osoitteeseen localhost:5000. Jos sovellus on käynnissä, 
 
 Seuraava kokonaisuus käsittelee tilannetta, jossa sovellus halutaan paikallisen asennuksen jälkeen viedä Herokuun myös muitten käytettäväksi.
 
-## Sovellus herokussa
+## Sovelluksen asennus herokuun
+
+### Tarvittavat esitoimet
+
+Kun olet toteuttanut paikallisen asennuksen (voit jättää välistä käyttäjätunnusten luomisen - teemme ne erikseen Herokuun), voit siirtää sovelluksen Herokuun.
+
+Tässä oletetaan, että käyttäjä on asentanut itselleen Herokun, hankkinut siihen käyttäjätunnuksen ja koneella on 
+PostgreSQL-tietokannanhallintajärjestelmä.
+
+Aloitamme siirtymällä sovelluksen kansioon ja luomalla Heroku sovelluksne komennolla
+```
+heroku create sovelluksennimi
+```
+Voit vaihtaa yllä olevan "sovelluksennimi" mieleiseksesi.
+
+Nyt yhdistämme paikallisen versionhallinnan Herokuun. Tehdäksesi tämän anna komento
+```
+git remote add heroku
+```
+Siirrämme nyt gitin avulla version herokuun. Anna seuraavat käskyt.
+```
+git add .
+git commit -m "initial commit"
+git push heroku master
+```
+Teemme nyt PostgreSQL-tietokannan vaatimia toimenpiteitä. Anna seruaavat kommennot
+```
+heroku config:set HEROKU=1
+heroku addons:add heroku-postgresql:hobby-dev
+```
+Herokulla on nyt tietokanta käytössään.
+
+### Käyttäjätunnusten luominen paikallisesti
+
+Samoin kuin paikallisen version kanssa, joudumme lisäämään admin-tunnukset tietokantaan. Aloitamme tämän antamalla komennon
+```
+heroku pg:psql
+```
+Avautuvaan konsoliin kirjoita jälleen seuraavat tiedot:
+```
+INSERT INTO account (username, password, admin) VALUES ('admin','admin', TRUE);
+```
+Voit jälleen vaihtaa kahta ensimmäistä parametriä.
+
+Lopulta sulje yhteys tietokantaan antamalla komento
+
+```
+\q
+```
+
+Ohjeln pitäisi olla nyt toiminnassa "create heroku" -käskyn suorittamisen yhteydessä ilmoitetussa verkko-osoitteessa.
+
+
+
+
