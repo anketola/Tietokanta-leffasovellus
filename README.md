@@ -43,6 +43,9 @@ Salasana: testitunnus
 
 
 ## Dokumentaatio
+[Asennusohje](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/asennusohje.MD)
+
+[Käyttöohje](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/kayttoohje.md)
 
 [Käyttötapaukset](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/kayttotapaukset.md)
 
