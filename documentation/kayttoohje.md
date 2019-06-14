@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Päivitetään kohtapuolin vastaamaan sovelluksen lopullisia toimintoja.
+( Päivitetään kohtapuolin vastaamaan sovelluksen lopullisia toimintoja, screenshotit otetaan lopullisesta versiosta)
 
 ## Perustoiminnot
 
@@ -36,14 +36,19 @@ Sovelluksen etusivulla on kolme näkymää ja navigointipalkki. Ylhäältä navi
 
 ( osa tähän liittyvistä toiminnallisuuksista toteutetaan ensi viikolla, jätetään tarkemmat ohjeistukset pois toistaiseksi )
 
-## Keskeiset toiminnallisuudet
+## Keskeisiä toiminnallisuuksia
 
 Sovellus sisäsltää useita hyödyllisiä ominaisuuksia. Seuraavassa on kuvattu, kuinka pääset eräisiin keskeisiin niistä käsiksi.
 
-( tämä täydennetään siitten, kun ulkonäköä ja toiminnallisuuksia on hieman viilattu ensi viikon aikana )
+( tämä täydennetään siiten, kun ulkonäköä ja toiminnallisuuksia on hieman viilattu ensi viikon aikana )
 
-### Arvostelun kirjoittaminen
+- Arvostelun kirjoittaminen: pääset kirjoittamaan arvostelun (kirjautumalla sisälle) ja navigoimalla haluamasi elokuvan näkumään. Paina sen jälkeen "Kirjoita arvostelu" -nappia. Eteesi avautuu lomake, johon voit antaa arvosanan asteikolla 1-5 (1 huonoin ja 5 paras) sekä kirjallisen arvostelun. Painamalla "Lähetä arvostelu" tallentuu arvostelu elokuvan yhteyteen kaikkien nähtäväksi.
 
+- Arvostelun poistaminen tai muuttaminen: jos muutatkin mielesi ja haluat joko poistaa tai muuttaa tekemääsi arvostelua, siirry sen elokuvan näkymään, johon olet sen jättänyt. Omien arvostelujesi kohdalla sinulla on kaksi ylimääräistä nappia: "poista" ja "muokkaa". "Poista"-nappi hävittää kokonaan tekemäsi arvostelun. "Muokkaa"-nappi ohjaat sinut uudelleen näkymään, jossa voit muokata joko antamaasi arvoanaa tai siitä kirjoittamaasi arvostelua.
+
+- Elokuvia pääsee selaamaan navigointipalkin "Listaa elokuvat" painikkeen kautta"
+
+- Muiden elokuville kirjoittamia arvosteluja pääset lukemaan navigoimalla mielenkiintoisen elokuvan sivulle. Voit myös jättää sieltä arvostelun itsekkin (jos olet kirjautunut sisään).
 
 ## Pääkäyttäjän toiminnot
 
