@@ -66,7 +66,7 @@ Avaa selain ja siirry osoitteeseen localhost:5000. Jos sovellus on käynnissä, 
 
 Seuraava kokonaisuus käsittelee tilannetta, jossa sovellus halutaan paikallisen asennuksen jälkeen viedä Herokuun myös muitten käytettäväksi.
 
-## Sovelluksen asennus herokuun
+## Sovelluksen asennus Herokuun
 
 ### Tarvittavat esitoimet
 
