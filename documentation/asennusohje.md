@@ -116,7 +116,7 @@ Lopulta sulje yhteys tietokantaan antamalla komento
 \q
 ```
 
-Ohjeln pitäisi olla nyt toiminnassa "create heroku" -käskyn suorittamisen yhteydessä ilmoitetussa verkko-osoitteessa.
+Ohjelman pitäisi olla nyt toiminnassa "heroku create" -käskyn suorittamisen yhteydessä ilmoitetussa verkko-osoitteessa.
 
 
 
