@@ -50,6 +50,7 @@ def movies_edit_entry(movie_id):
     m.name = form.name.data
     m.released = form.released.data
     m.description = form.description.data
+    m.categories.clear()
     m.categories = form.category.data
 
     db.session().commit()
@@ -70,7 +71,7 @@ def movies_create():
 
     m = Movie(form.name.data, form.released.data, form.description.data)
     categories = form.category.data
-
+    
     db.session().add(m)
     db.session().commit()
 
@@ -88,7 +89,10 @@ def movies_create():
 def movies_delete(movie_id):
     m = Movie.query.get(movie_id)
 
+    m.categories.clear()
+
     db.session().delete(m)
     db.session().commit()
+
 
     return redirect(url_for("movies_index"))
