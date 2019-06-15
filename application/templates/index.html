@@ -48,7 +48,7 @@
               <td>{{ review.rating }}</td>
               <td>{{ review.added }}</td>
               <td>
-                <a class="btn btn-secondary btn-sm" href="{{ url_for('reviews_for_movie', movie_id = review.movie_id) }}" role="button">Lue arvostelu</a>
+                <a class="btn btn-secondary btn-sm" href="{{ url_for('reviews_view', movie_id = review.movie_id, review_id = review.id) }}" role="button">Lue arvostelu</a>
               </td>
             </tr>
             {% endfor %}

@@ -33,6 +33,12 @@ def reviews_for_movie(movie_id):
     r = Review.query.filter_by(movie_id = movie_id).all()
     return render_template("reviews/list.html", reviews = r, movie = Movie.query.get(movie_id))
 
+@app.route("/reviews/view/<movie_id>/<review_id>", methods=["GET"])
+def reviews_view(movie_id, review_id):
+    m = Movie.query.get(movie_id)
+    r = Review.query.get(review_id)
+    return render_template("reviews/view.html", review = r, movie = m, r_count = Movie.review_count_for_movie(movie_id))
+
 @app.route("/reviews/delete/<movie_id>/<review_id>", methods=["POST"])
 @login_required(role="USER")
 def reviews_delete(movie_id, review_id):

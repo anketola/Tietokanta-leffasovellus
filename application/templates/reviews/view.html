@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container-fluid">
+        <div class="row"></div>
+        <h1 style="text-align: center; margin-top: 20px">Arvostelu</h1>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <table class="table" style="margin-top: 20px">
+                <caption>Arvostelu elokuvalle {{ movie.name }}</caption>
+                    <tbody>
+                        <tr style="background-color: #659DBD; color: whitesmoke">
+                            <th>Elokuvan nimi</th>
+                            <td><strong>{{ movie.name }}</strong></td>
+                        <tr>
+                        <tr>
+                            <th>Arvostelun kirjoittaja</th>
+                            <td>{{ review.account.username }}</td>
+                        </tr>
+                        <tr>
+                            <th>Arvosana</th>
+                            <td>
+                                {{ review.rating }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Lähetetty</th>
+                            <td>
+                                {{ review.date_created }}
+                            </td>
+                        </tr>    
+                        <tr style="background-color: #e3f2fd;">
+                            <th>Arvostelu</th>
+                            <td>
+                                {{ review.reviewtext }}
+                            {% if review.date_created != review.date_modified %}
+                            <br/><br/>
+                            <small>Arvostelua on muokattu {{ review.date_modified}}</small>
+                            {% endif %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-bottom: 30px">
+                    <a href="{{ url_for('reviews_for_movie', movie_id = movie.id) }}">Siirry lukemaan muita elokuvan arvosteluita</a><small> ({{ r_count[0].revcount }} arvostelua)</small><br /><br />
+                    {% if current_user.is_authenticated %}
+                    <a class="btn btn-primary" href="{{ url_for('reviews_form', movie_id = movie.id) }}" role="button">Kirjoita uusi arvostelu</a>
+                    {% else %}
+                    Haluatko kirjoittaa arvostelun? <a href="{{ url_for('auth_login') }}">Kirjaudu sisään</a> tai <a href="{{ url_for('accounts_form') }}">rekisteröidy</a> käyttäjäksi.
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
