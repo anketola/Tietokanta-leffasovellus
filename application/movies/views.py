@@ -46,14 +46,18 @@ def movies_edit_entry(movie_id):
     if not form.validate():
         return render_template("movies/edit.html", form = form, movie = Movie.query.get(movie_id))
 
+    categories = form.category.data
     m = Movie.query.get(movie_id)
     m.name = form.name.data
     m.released = form.released.data
     m.description = form.description.data
     m.categories.clear()
-    m.categories = form.category.data
 
-    db.session().commit()
+    for id in categories:
+        category = Category.query.get(id)
+        m.categories.append(category)
+    
+    db.session.commit()
 
     return redirect(url_for("movies_index"))
 
