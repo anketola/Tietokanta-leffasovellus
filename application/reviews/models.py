@@ -6,7 +6,7 @@ from sqlalchemy.sql import text
 class Review(Base):
 
     rating = db.Column(db.Integer, nullable=False)
-    reviewtext = db.Column(db.String(144), nullable=False)
+    reviewtext = db.Column(db.String(1000), nullable=False)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
     movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'), nullable=False)

@@ -23,7 +23,7 @@
         Arvosana: {{ review.rating }} <br />
         Arvostelu: {{ review.reviewtext }} <br />
         {% if (current_user.admin == True) or (current_user.id == review.account.id) %}
-        {% if current_user.id == review.account.id %}
+        {% if (current_user.id == review.account.id) and (current_user.admin == False) %}
         <strong>Olet kirjoittanut tämän arvostelun ja voit muokata tai poistaa sen.</strong>
         {% endif %}
         <table>

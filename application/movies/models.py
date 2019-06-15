@@ -7,7 +7,7 @@ class Movie(Base):
 
     name = db.Column(db.String(144), nullable=False)
     released = db.Column(db.Integer, nullable=False)
-    description = db.Column(db.String(144), nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
 
     reviews = db.relationship("Review", backref='movie', lazy=True, cascade="all, delete-orphan")
 
@@ -20,7 +20,7 @@ class Movie(Base):
     
     @staticmethod
     def list_movies_with_highest_scores():
-        stmt = text("SELECT Movie.name, CAST(AVG(Review.rating) AS DECIMAL(10,2)) FROM MOVIE"
+        stmt = text("SELECT Movie.name, Movie.id, CAST(AVG(Review.rating) AS DECIMAL(10,2)) FROM MOVIE"
                     " INNER JOIN Review on Movie.id = Review.movie_id"
                     " GROUP BY Movie.id"
                     " ORDER BY AVG(Review.rating) DESC"
@@ -29,7 +29,7 @@ class Movie(Base):
         response = []
 
         for row in res:
-            response.append({"name":row[0], "averagescore":row[1]})
+            response.append({"name":row[0], "id":row[1], "averagescore":row[2]})
 
         return response
     
@@ -44,4 +44,26 @@ class Movie(Base):
         for row in res:
             response.append({"id":row[0], "name":row[1], "added":row[2]})
         
+        return response
+
+    @staticmethod
+    def review_count_for_movie(movieid):
+        stmt = text("SELECT COUNT(Review.id) FROM Movie, Review WHERE Movie.id = Review.movie_id AND Movie.id = :movieid").params(movieid = movieid)
+        res = db.engine.execute(stmt)
+        response = []
+
+        for row in res:
+            response.append({"revcount":row[0]})
+
+        return response
+    
+    @staticmethod
+    def average_rating_for_movie(movieid):
+        stmt = text("SELECT CAST(AVG(Review.rating) AS DECIMAL(10,2)) FROM Movie, Review WHERE Movie.id = Review.movie_id AND Movie.id = :movieid").params(movieid = movieid)
+        res = db.engine.execute(stmt)
+        response = []
+
+        for row in res:
+            response.append({"average":row[0]})
+
         return response

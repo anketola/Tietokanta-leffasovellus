@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 
-
 {% block body %}
 
 <div class="container-fluid">
@@ -11,15 +10,19 @@
         <caption>Viimeksi lisätyt elokuvat. Tutustu ja arvostele!</caption>
         <thead style="background-color: #659DBD; color: whitesmoke">
           <tr>
-            <th>Nimi</th>
+            <th>Elokuvan nimi</th>
             <th>Lisätty</th>
+            <th>Tutustu</th>
           </tr>
         </thead>
         <body>
           {% for movie in latestmovies %}
           <tr>
-            <td>{{ movie.name }}</td>
+            <td><a href="{{ url_for('movies_view', movie_id = movie.id) }}">{{ movie.name }}</a></td>
             <td>{{ movie.added }}</td>
+            <td>
+              <a class="btn btn-secondary btn-sm" href="{{ url_for('movies_view', movie_id = movie.id) }}" role="button">Tutustu!</a>
+            </td>
           </tr>
           {% endfor %}
         </body>
@@ -32,7 +35,7 @@
           <caption>Rekisteröityjen käyttäjien lisäämät uusimmat arvostelut. Lue oletko samaa mieltä!</caption>
           <thead style="background-color: #659DBD; color: whitesmoke">
             <tr>
-              <th>Elokuva</th>
+              <th>Elokuvan nimi</th>
               <th>Arvosana</th>
               <th>Lisätty</th>
               <th>Lue arvostelu</th>
@@ -71,7 +74,7 @@
       <tbody style="background-color: #e3f2fd;">
       {% for movie in topmovies %}
       <tr>
-        <td>{{ movie.name }}</td>
+        <td><a href="{{ url_for('movies_view', movie_id = movie.id) }}">{{ movie.name }}</a></td>
         <td>{{ movie.averagescore }}</td>
       </tr>
       {% endfor %}
@@ -79,6 +82,6 @@
     </table>
   </div>
   </div>  
- </div>
+</div>
 {% endif %}
 {% endblock %}

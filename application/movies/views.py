@@ -9,7 +9,12 @@ from application.category.models import Category
 def movies_index():
     return render_template("movies/list.html", movies = Movie.query.all())
 
-@app.route("/movies/new/")
+@app.route("/movies/view/<movie_id>", methods=["GET"])
+def movies_view(movie_id):
+    m = Movie.query.get(movie_id)
+    return render_template("movies/view.html", movie = m, r_count = Movie.review_count_for_movie(movie_id), r_avg = Movie.average_rating_for_movie(movie_id))
+
+@app.route("/movies/new/", methods=["GET"])
 @login_required(role="ADMIN")
 def movies_form():
     form = MovieForm()
@@ -20,7 +25,7 @@ def movies_form():
     
     return render_template("movies/new.html", form = form)
 
-@app.route("/movies/<movie_id>")
+@app.route("/movies/edit/<movie_id>", methods=["GET"])
 @login_required(role="ADMIN")
 def movies_edit_form(movie_id):
     
@@ -61,7 +66,7 @@ def movies_edit_entry(movie_id):
 
     return redirect(url_for("movies_index"))
 
-@app.route("/movies/", methods=["POST"])
+@app.route("/movies/new", methods=["POST"])
 @login_required(role="ADMIN")
 def movies_create():
     form = MovieForm(request.form)
@@ -97,6 +102,5 @@ def movies_delete(movie_id):
 
     db.session().delete(m)
     db.session().commit()
-
 
     return redirect(url_for("movies_index"))
