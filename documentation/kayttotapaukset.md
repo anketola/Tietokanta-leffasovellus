@@ -28,7 +28,7 @@ Esiehto: Käyttäjällä on nimenomaan pääkäyttäjän valtuudet.
 
 Jälkiehto: Pääkäyttäjä saa lisättyä elokuvan osaksi listausta.
 
-Käyttötapauksen kulku: Käyttäjä kirjautuu sisään tunnuksilla, jotka oikeuttavat pääkäyttäjän valtuuksiin. Käyttäjä navigoi itsensä elokuvien listaukseen. Pääkäyttäjä painaa hänelle näkyvää nappia, jolla voi lisätä uuden elokuvan. Käyttäjä täyttää hänelle annettavan lomakkeen. Lomakkeessa annettujen tietojen perusteella luodaan uusi elokuva osaksi listausta.
+Käyttötapauksen kulku: Käyttäjä kirjautuu sisään tunnuksilla, jotka oikeuttavat pääkäyttäjän valtuuksiin. Pääkäyttäjällä on näkyvissä erillinen admin-työkalupalkki. Pääkäyttäjä painaa hänelle siinä näkyvää nappia, jolla voi lisätä uuden elokuvan. Käyttäjä täyttää hänelle annettavan lomakkeen. Lomakkeessa annettujen tietojen perusteella luodaan uusi elokuva osaksi listausta. Listattu elokuva näkyy nyt kaikille muille sovlluksen käyttäjille (myös ei rekisteröityneille).
 
 ***3. Käyttötapaus:** Ulkopuolinen käyttäjä haluaa tarkastella tietyn kategorian parhaita arvosanoja saaneita elokuvia.*
 
