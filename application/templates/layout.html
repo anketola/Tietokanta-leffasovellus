@@ -10,8 +10,6 @@
 
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
       <a class="navbar-brand" href="#">Leffa-arvostelut</a>
-      
-        
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('index') }}">Etusivu</a>
@@ -34,14 +32,13 @@
           {% endif %}
           </ul>
         </div>
-     
     </nav>
     
     {% if current_user.admin == True %}
     <div style="background-color: pink">
     <p>Olet kirjautunut sovellukseen <strong>ylläpitäjänä.</strong> Käytössäsi on työkaluja sovelluksen hallintaa varten.</p>
-    <a class="btn btn-dark" href="{{ url_for('movies_form') }}" role="button">Lisää uusia elokuvia</a>
-    <a class="btn btn-dark" href="{{ url_for('movies_index') }}" role="button">Poista ja muokka elokuvia</a>
+    <a class="btn btn-dark btn-sm" href="{{ url_for('movies_form') }}" role="button">Lisää uusia elokuvia</a>
+    <a class="btn btn-dark btn-sm" href="{{ url_for('movies_index') }}" role="button">Poista ja muokkaa elokuvia</a>
     </div>
     {% endif %}
 
