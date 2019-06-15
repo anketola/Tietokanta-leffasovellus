@@ -30,7 +30,7 @@
                     <tr>
                         <th>Keskiarvo</th>
                         <td>
-                            {{ r_avg[0].average if r_avg[0].average != None else '0' }}
+                            {{ "%.1f"|format(r_avg[0].average) if r_avg[0].average != None else '0' }}
                         </td>
                     </tr>    
                     <tr>

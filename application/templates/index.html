@@ -75,7 +75,7 @@
       {% for movie in topmovies %}
       <tr>
         <td><a href="{{ url_for('movies_view', movie_id = movie.id) }}">{{ movie.name }}</a></td>
-        <td>{{ movie.averagescore }}</td>
+        <td>{{ "%.1f"|format(movie.averagescore) }}</td>
       </tr>
       {% endfor %}
       </tbody>
