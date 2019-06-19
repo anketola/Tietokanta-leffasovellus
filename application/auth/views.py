@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.auth.models import User
 from application.auth.forms import LoginForm, RegisterForm
 
@@ -45,3 +45,8 @@ def accounts_create():
     db.session().commit()
 
     return redirect(url_for("index"))
+
+@app.route("/ownpage", methods=["GET"])
+@login_required(role="USER")
+def accounts_view_own():
+    return render_template("auth/ownpage.html", reviews = User.user_reviews_list(current_user.id))

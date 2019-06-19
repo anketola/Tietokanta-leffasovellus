@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-11" style="margin-top: 20px">
+            <h1 style="text-align: center">Omat arvostelut</h1>
+            <table class="table table-striped" style="margin-top: 20px">
+            <caption>Sovellukseen itse lähetetyt arvostelut.</caption>
+            <thead>
+                <tr>
+                    <th>Elokuva</th>
+                    <th>Arvosana</th>
+                    <th>Lähetetty</th>
+                    <th>Työkaluja</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for review in reviews %}
+                <tr>
+                    <td><a href="{{ url_for('movies_view', movie_id = review.movie_id) }}">{{ review.name }}</a></td>
+                    <td><img src="/static/images/arvosana_{{ review.rating }}.png" alt="arvosana {{ review.rating }}"></td>
+                    <td>{{ review.added }}</td>
+                    <td>
+                        <table style="background-color: #effbff;">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <form method="GET" action="{{ url_for('reviews_view', movie_id = review.movie_id, review_id = review.review_id) }}">
+                                        <button type="submit" class="btn btn-secondary btn-sm">Lue arvostelu</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="GET" action="{{ url_for('reviews_edit_form', movie_id = review.movie_id, review_id = review.review_id) }}">
+                                        <button type="submit" class="btn btn-warning btn-sm">Muokkaa</button>
+                                    </form>
+                                <td>
+                                    <form method="POST" action="{{ url_for('reviews_delete', movie_id = review.movie_id, review_id = review.review_id) }}">
+                                            <button type="submit" class="btn btn-danger btn-sm">Poista</button>
+                                    </form>
+                                </td>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+            {% if reviews|length == 0 %}
+            <strong>Et ole kirjoittanut vielä yhtään arvostelua.</strong><br /><br />
+            <a class="btn btn-primary btn" href="{{ url_for('movies_index') }}" role="button">Selaa elokuvia!</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

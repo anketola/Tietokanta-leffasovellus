@@ -1,6 +1,8 @@
 from application import db
 from application.models import Base
 
+from sqlalchemy.sql import text
+
 class User(Base):
 
     __tablename__ = "account"
@@ -34,3 +36,14 @@ class User(Base):
         else:
             return ["USER"]
     
+    @staticmethod
+    def user_reviews_list(userid):
+        stmt = text("SELECT Review.id, Review.rating, Review.date_created, Movie.name, Movie.id FROM Review, Movie"
+                    " WHERE Review.account_id = Account_id AND Movie.id = Review.movie_id AND Account_id = :userid").params(userid = userid)
+        res = db.engine.execute(stmt)
+        response = []
+
+        for row in res:
+            response.append({"review_id":row[0], "rating":row[1], "added": row[2], "name": row[3], "movie_id": row[4]})
+
+        return response    

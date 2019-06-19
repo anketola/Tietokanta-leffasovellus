@@ -31,6 +31,9 @@
             {% endfor %}
         </tbody>
 </table>
+{% if reviews|length == 0 %}
+<strong>Kukaan ei ole vielä kirjoittanut elokuvalle arvostelua.</strong><br /><br />
+{% endif %}
 </div>
 </div>
 
