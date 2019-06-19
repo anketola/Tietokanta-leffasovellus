@@ -34,7 +34,7 @@ Sovellus luo tietokantatalutut, mutta joudumme muokkaamaan niiden sisältöä en
 
 Paina Ctrl+C keskeyttääksei sovelluksen suorituksen. Siirry sen jälkeen seuraavaan osaan, jossa käsitellään käyttäjätunnusten luomista.
 
-### Käyttäjätunnusten luominen paikallisesti
+### Admin-tunnusten luominen paikallisesti
 
 Tässä käsitellään admin-tunnusten luomista paikallisesti. Huomaathan, että normaalikäyttäjien rekisteröinti onnistuu suoraan sovelluksen toiminnallisuuksia käyttämällä.
 
@@ -98,7 +98,7 @@ heroku addons:add heroku-postgresql:hobby-dev
 ```
 Herokulla on nyt tietokanta käytössään.
 
-### Käyttäjätunnusten luominen paikallisesti
+### Admin-tunnusten luominen PostgreSQL-tietokantaan
 
 Samoin kuin paikallisen version kanssa, joudumme lisäämään admin-tunnukset tietokantaan. Aloitamme tämän antamalla komennon
 ```
