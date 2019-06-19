@@ -118,6 +118,19 @@ Lopulta sulje yhteys tietokantaan antamalla komento
 
 Ohjelman pitäisi olla nyt toiminnassa "heroku create" -käskyn suorittamisen yhteydessä ilmoitetussa verkko-osoitteessa.
 
+## Muuta tietoa asennuksesta
+
+Sovelluksen käyttönotto edellyttää, että aiemmin kuvattujen admin-tunnusten avulla luodaan sisältöä sovellukseen. Uusien elokuvien lisäämiseksi admin-tunnuksilla on ensimmäiseksi luotava halutun nimisiä elokuvakategorioita. Elokuvakategorioiden olemassaolo on edellytys uusien elokuvien lisäämiseksi sovellukseen. 
+
+Haluttaessa kategorioita on mahdollista luoda suoraan tietokantaan asennuksen yhteydessä. Seuraavalla komennolla lisättäisiin uusi kategoria nimeltään "Komedia".
+
+```
+INSERT INTO category (name) VALUES ('Komedia');
+```
+
+Sovellus sisältää kuitenkin lomakkeen kategoriden lisäämisen admin-tunnuksilla. Ohjeet sekä uusien kategorioiden että elokuvien lisäämiseen sovellukseen saat [käyttöohjeesta](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/kayttoohje.md).
+
+
 
 
 
