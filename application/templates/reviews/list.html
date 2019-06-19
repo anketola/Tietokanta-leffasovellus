@@ -20,7 +20,7 @@
 <div class="row" style="background-color: #e3f2fd; margin-bottom: 5px">
     <div class="col-12">
         Kirjoittanut: {{ review.account.username }} <br />
-        Arvosana: {{ review.rating }} <br />
+        Arvosana: <img src="/static/images/arvosana_{{ review.rating }}.png" alt="arvosana {{ review.rating }}"> <br />
         Arvostelu: {{ review.reviewtext }} <br />
         {% if (current_user.admin == True) or (current_user.id == review.account.id) %}
         {% if (current_user.id == review.account.id) and (current_user.admin == False) %}

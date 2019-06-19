@@ -45,7 +45,7 @@
             {% for review in latestreviews %}
             <tr>
               <td>{{ review.name }}</td>
-              <td>{{ review.rating }}</td>
+              <td><img src="/static/images/arvosana_{{ review.rating }}.png" alt="arvosana {{ review.rating }}"></td>
               <td>{{ review.added }}</td>
               <td>
                 <a class="btn btn-secondary btn-sm" href="{{ url_for('reviews_view', movie_id = review.movie_id, review_id = review.id) }}" role="button">Lue arvostelu</a>
