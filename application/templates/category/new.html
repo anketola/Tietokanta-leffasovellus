@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row" style="margin-top:30px">
+        <div class="col-12" style="text-align: center">
+            <h1 >Lisää uusi kategoria</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form method="POST" style="margin-bottom: 10px; margin-top: 10px" action="{{ url_for('category_create') }}">
+                <div class="form-group">
+                {{ form.name.label }}
+                {{ form.name }}
+                <ul>
+                    {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            <button type="submit" class="btn btn-primary">Lisää uusi kategoria</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

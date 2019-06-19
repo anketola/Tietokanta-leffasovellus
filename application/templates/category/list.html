@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row" style="margin-top: 20px">
+        <div class="col-8">
+            <h1>Hallinnoi kategorioita</h1>
+            Tällä hetkellä sovelluksessa olevat kategoriat: <br /><br />
+            <ul>
+                {% for category in categories %}
+                <li>
+                    {{ category.name }}
+                </li>    
+                {% endfor %}
+            </ul>
+            {% if categories|length == 0 %}
+            <strong>Sovellukseen ei ole vielä lisätty kategorioita.</strong>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8" style="margin-top: 20px">
+            <a class="btn btn-primary" href="{{ url_for('category_form') }}" role="button">Lisää uusi kategoria</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

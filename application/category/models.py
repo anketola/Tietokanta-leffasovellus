@@ -9,6 +9,4 @@ class Category(db.Model):
     moviescategories = db.relationship("Movie", secondary = moviescategories, backref='categories')
 
     def __init__(self, name):
-        self.rating = rating
-        self.reviewtext = reviewtext
-    
+        self.name = name
