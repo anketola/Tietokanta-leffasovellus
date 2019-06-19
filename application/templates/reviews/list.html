@@ -2,50 +2,39 @@
 
 {% block body %}
 <div class="container">
-<div class="row" style="margin-bottom: 5px">
-    <div class="col-12">
+<div class="row" style="margin-top: 20px">
+    <div class="col-11">
     <h1>Arvostelut</h1>
-    <strong>Elokuvan nimi: </strong>{{ movie.name }} <br />
-    <strong>Julkaisuvuosi: </strong>{{ movie.released }} <br />
-    <strong>Kategoria(t):</strong>
-    {% for id in movie.categories %}
-        {{ id.name }}
-    {% endfor %}
-    <br />
-    <strong>Kuvaus: </strong>{{ movie.description }} <br />
-</div>
-</div>
-
-{% for review in reviews %}
-<div class="row" style="background-color: #e3f2fd; margin-bottom: 5px">
-    <div class="col-12">
-        Kirjoittanut: {{ review.account.username }} <br />
-        Arvosana: <img src="/static/images/arvosana_{{ review.rating }}.png" alt="arvosana {{ review.rating }}"> <br />
-        Arvostelu: {{ review.reviewtext }} <br />
-        {% if (current_user.admin == True) or (current_user.id == review.account.id) %}
-        {% if (current_user.id == review.account.id) and (current_user.admin == False) %}
-        <strong>Olet kirjoittanut tämän arvostelun ja voit muokata tai poistaa sen.</strong>
-        {% endif %}
-        <table>
+    Arvostelut elokuvalle <a href="{{ url_for('movies_view', movie_id = movie.id) }}">{{ movie.name }}</a>. <br />
+    <table class="table table-striped" style="margin-top: 10px">
+    <caption>Elokuvan {{ movie.name }} arvostelut.</caption>    
+        <thead style="background-color: #659DBD; color: whitesmoke">
             <tr>
-                <td>
-                <form method="POST" action="{{ url_for('reviews_delete', movie_id = movie.id, review_id = review.id) }}">
-                    <button type="submit" class="btn btn-danger btn-sm">Poista</button>
-                </form>
-                </td>
-                <td>
-                <form method="GET" action="{{ url_for('reviews_edit_form', movie_id = movie.id, review_id = review.id) }}">
-                    <button type="submit" class="btn btn-warning btn-sm">Muokkaa</button>
-                </form>
+                <th>Kirjoittaja</th>
+                <th>Arvosana</th>
+                <th>Lähetetty</th>
+                <th>Arvosteluteksti</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+            <tr>
+                <td>{{ review.account.username }}</td>
+                <td><img src="/static/images/arvosana_{{ review.rating }}.png" alt="arvosana {{ review.rating }}"></td>
+                <td><small>{{ review.date_created }}</small></td>
+                <td>{{ review.reviewtext|truncate(30, killwords=False, end='...') }}
+                    {% if review.reviewtext|length > 30 %}
+                    <a href="{{ url_for('reviews_view', review_id = review.id, movie_id = movie.id) }}">Lue koko teksti.</a>
+                    {% endif %}
                 </td>
             </tr>
-        </table>
-       {% endif %}
-    </div>
+            {% endfor %}
+        </tbody>
+</table>
 </div>
-{% endfor %}
+</div>
 
-<div style="margin-top: 20px">
+<div style="margin-bottom: 20px">
 {% if current_user.is_authenticated %}
 <a class="btn btn-primary" href="{{ url_for('reviews_form', movie_id = movie.id) }}" role="button">Kirjoita uusi arvostelu</a>
 {% else %}
