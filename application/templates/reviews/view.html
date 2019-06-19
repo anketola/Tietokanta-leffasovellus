@@ -37,8 +37,29 @@
                                 {{ review.reviewtext }}
                             {% if review.date_created != review.date_modified %}
                             <br/><br/>
-                            <small>Arvostelua on muokattu {{ review.date_modified}}</small>
+                            <small>Arvostelua on muokattu {{ review.date_modified }}.</small>
                             {% endif %}
+                            {% if (current_user.admin == True) or (current_user.id == review.account.id) %}
+                            <br /><br />
+                            {% if (current_user.id == review.account.id) and (current_user.admin == False) %}
+                            <strong>Olet kirjoittanut tämän arvostelun.<br />
+                            Voit halutessasi muokata sitä tai poistaa sen.</strong>
+                            {% endif %}
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form method="GET" action="{{ url_for('reviews_edit_form', movie_id = movie.id, review_id = review.id) }}">
+                                            <button type="submit" class="btn btn-warning btn-sm">Muokkaa</button>
+                                        </form>
+                                        </td>
+                                    <td>
+                                    <form method="POST" action="{{ url_for('reviews_delete', movie_id = movie.id, review_id = review.id) }}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Poista</button>
+                                    </form>
+                                    </td>
+                                </tr>
+                            </table>
+                           {% endif %}
                             </td>
                         </tr>
                     </tbody>

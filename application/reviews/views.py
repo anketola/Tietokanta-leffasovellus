@@ -26,7 +26,7 @@ def reviews_create(movie_id):
     db.session().add(r)
     db.session().commit()
 
-    return redirect(url_for("movies_index"))
+    return redirect(url_for("reviews_for_movie", movie_id = movie_id))
 
 @app.route("/reviews/list/<movie_id>", methods=["GET"])
 def reviews_for_movie(movie_id):
@@ -83,4 +83,4 @@ def reviews_edit_entry(movie_id, review_id):
 
     db.session().commit()
 
-    return redirect(url_for("reviews_for_movie", movie_id = movie_id))
+    return redirect(url_for("reviews_view", review_id = review_id, movie_id = movie_id))

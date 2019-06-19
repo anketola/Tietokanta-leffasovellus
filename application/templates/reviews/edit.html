@@ -43,7 +43,7 @@
             </ul>
         </div>
       <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
-      <a class="btn btn-danger" style="align-self: right" href="{{ url_for('reviews_for_movie', movie_id = movie.id) }}" role="button">Peruuta toiminto</a>
+      <a class="btn btn-danger" style="align-self: right" href="{{ url_for('reviews_view', review_id = review.id, movie_id = movie.id) }}" role="button">Peruuta toiminto</a>
     </form>
     
   </div>
