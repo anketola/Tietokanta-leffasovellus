@@ -48,4 +48,4 @@ Salasana: testitunnus
 
 [Käyttötapaukset](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/kayttotapaukset.md)
 
-[Hahmotelma tietokantakaaviosta](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/tietokantakaavio.md)
+[Tietokannan rakenne](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/tietokantakaavio.md)
