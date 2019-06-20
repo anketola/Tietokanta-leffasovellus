@@ -5,6 +5,21 @@
     <div class="row" style="margin-top: 20px">
         <div class="col-12">
             <h1>Selaa elokuvia</h1>
+            <h2>Suosituimmat elokuvat</h2>
+            <p>Haluatko nähdä jonkin kategorian suosituimmat elokuvat? Valitse kategoria.</p>
+            <form method="POST" style="margin-top: 20px" action="{{ url_for('movies_for_category_request') }}">
+                <div class="form-group">
+                    {{ form.category.label }}
+                    {{ form.category }}
+                    <ul>
+                        {% for error in form.category.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <button type="submit" class="btn btn-primary">Hae suosituimmat elokuvat</button>
+            </form>
+            <h2 style="margin-top: 20px">Kaikki elokuvat</h2>
             <table class="table table-striped" style="margin-top: 20px">
                 <caption>Listaus elokuvista</caption>
                 <thead style="background-color: #659DBD; color: whitesmoke">
@@ -44,7 +59,7 @@
                         </td>
                         <td>
                             <form method="GET" action="{{ url_for('movies_edit_form', movie_id = movie.id) }}">
-                                    <button type="submit" class="btn btn-warning btn-sm">Muokkaa</button>
+                                <button type="submit" class="btn btn-warning btn-sm">Muokkaa</button>
                             </form>
                         </td>
                         {% endif %}

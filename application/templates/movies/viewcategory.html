@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row" style="margin-top: 20px">
+        <div class="col-12">
+            
+            <h1>Kategorian suosituimmat elokuvat</h1>
+            <table class="table table-striped" style="margin-top: 20px">
+            <caption>Kategorian suosituimmat elokuvat</caption>
+            <thead style="background-color: #659DBD; color: whitesmoke">
+                <tr>
+                    <th>Elokuvan nimi</th>
+                    <th>Julkaisuvuosi</th>
+                    <th>Keskiarvo</th>
+                    <th>Tutustu!</th>
+                    <th>Arvostelut</th>
+                    {% if current_user.admin == True %}
+                    <th>Poista</th>
+                    <th>Muokkaa</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+                <tr>
+                    <td><a href="{{ url_for('movies_view', movie_id = movie.movie_id) }}">{{ movie.movie_name }}</a></td>
+                    <td>{{ movie.movie_released }}</td>
+                    <td>{{ "%.1f"|format(movie.avg_rating) }}</td>
+                    <td>
+                        <a class="btn btn-secondary btn-sm" href="{{ url_for('movies_view', movie_id = movie.movie_id) }}" role="button">Tutustu!</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary btn-sm" href="{{ url_for('reviews_for_movie', movie_id = movie.movie_id) }}" role="button">Lue arvosteluita</a>
+                    </td>
+                    {% if current_user.admin == True %}
+                        <td>
+                            <form method="POST" action="{{ url_for('movies_delete', movie_id = movie.movie_id) }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Poista</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="GET" action="{{ url_for('movies_edit_form', movie_id = movie.movie_id) }}">
+                                <button type="submit" class="btn btn-warning btn-sm">Muokkaa</button>
+                            </form>
+                        </td>
+                        {% endif %}
+                </tr>
+                {% endfor %}
+
+            </tbody>
+            </table>
+            <a class="btn btn-primary" href="{{ url_for('movies_index') }}" role="button">Selaa muita elokuvia</a>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

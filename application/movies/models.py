@@ -67,3 +67,20 @@ class Movie(Base):
             response.append({"average":row[0]})
 
         return response
+    
+    @staticmethod
+    def movies_category_best(categoryid):
+        stmt = text("SELECT Movie.id, Movie.name, Movie.released, AVG(Review.rating), Category.name FROM Movie"
+                    " INNER JOIN Review ON Review.movie_id = Movie.id"
+                    " INNER JOIN Moviescategories ON Moviescategories.movie_id = Movie.id"
+                    " INNER JOIN Category ON Category.id = Moviescategories.category_id"
+                    " WHERE Category.id = :categoryid"
+                    " GROUP BY Movie.id"
+                    " ORDER BY AVG(Review.rating) DESC").params(categoryid = categoryid)
+        res = db.engine.execute(stmt)
+        response = []
+
+        for row in res:
+            response.append({"movie_id":row[0], "movie_name":row[1], "movie_released":row[2], "avg_rating":row[3], "category_name":row[4]})
+
+        return response
