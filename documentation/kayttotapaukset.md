@@ -50,12 +50,12 @@ Esiehto: Ei erityisiä esiehtoja. Riittää, että käyttäjä löytää sivusto
 
 Jälkiehto: Käyttäjä pääsee tarkastelemaan ja selaamaan arvosanoja.
 
-Käyttötapauksen kulku: Käyttäjä navigoi sivustolle. Hän ei kirjaudu sisään. Sen sijaan hän menee suoraan elokuvien listaukseen. Hän valitsee suodattimeksi haluamansa kategoriat (esimerkiksi komedia). Käyttäjälle näytetään kategorian sisältämät elokuvat. Käyttäjä painaa nappia järjestääkseen elokuvat arvosanajärjestyksessä. Seurauksena käyttäjälle näytetään tulokset paras arvosana korkeimana. Käyttäjä voi tästä halutessaan jatkaa esim. klikkaamalla tiettyä elokuvaa lukeakseen arvostelutekstejä.
+Käyttötapauksen kulku: Käyttäjä navigoi sivustolle. Hän ei kirjaudu sisään. Sen sijaan navigoi selaamaan elokuvia. Hän valitsee lomakkeella kategorian, jonka suosituimmat elokuvat hän haluaa nähdä. Käyttäjälle näytetään kategorian sisältämät elokuvat koreimman arvosanan saanut ensin. Käyttäjä voi tästä halutessaan jatkaa esim. klikkaamalla tiettyä elokuvaa lukeakseen arvostelutekstejä.
 
 ```
 Kategorian perusteella esitetään tiedon esittämiseksi seuraava kysely. Category.id vastaa haetun kategorian ID:tä.
 
-SELECT Movie.id, Movie.name, AVG(Review.rating), Category.name FROM Movie
+SELECT Movie.id, Movie.name, Movie.released, AVG(Review.rating) FROM Movie
 INNER JOIN Review ON Review.movie_id = Movie.id
 INNER JOIN Moviescategories ON Moviescategories.movie_id = Movie.id
 INNER JOIN Category ON Category.id = Moviescategories.category_id
