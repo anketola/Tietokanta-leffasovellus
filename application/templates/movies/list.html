@@ -2,57 +2,58 @@
 
 {% block body %}
 <div class="container">
-  <h1>Listaus elokuvista</h1>
-  <div class="row">
-      <div class="col-3">
-        <strong>Nimi </strong>
-      </div>
-      <div class="col-2">
-          <strong>Julkaisuvuosi </strong>
-      </div>
-      <div class="col-3">
-          <strong>Kategoria(t)</strong>
-      </div>
-      <div class="col-4">
-          <strong>Kuvaus</strong>
-      </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-12">
+            <h1>Selaa elokuvia</h1>
+            <table class="table table-striped" style="margin-top: 20px">
+                <caption>Listaus elokuvista</caption>
+                <thead style="background-color: #659DBD; color: whitesmoke">
+                    <tr>
+                        <th>Elokuvan nimi</th>
+                        <th>Julkaisuvuosi</th>
+                        <th>Kategoria(t)</th>
+                        <th>Tutustu!</th>
+                        <th>Arvostelut</th>
+                        {% if current_user.admin == True %}
+                        <th>Poista</th>
+                        <th>Muokkaa</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movie in movies %}
+                    <tr>
+                        <td>{{ movie.name }}</td>
+                        <td>{{ movie.released }}</td>
+                        <td>
+                            {% for id in movie.categories %}
+                                {{ id.name }}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary btn-sm" href="{{ url_for('movies_view', movie_id = movie.id) }}" role="button">Tutustu!</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary btn-sm" href="{{ url_for('reviews_for_movie', movie_id = movie.id) }}" role="button">Lue arvosteluita</a>
+                        </td>
+                        {% if current_user.admin == True %}
+                        <td>
+                            <form method="POST" action="{{ url_for('movies_delete', movie_id = movie.id) }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Poista</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="GET" action="{{ url_for('movies_edit_form', movie_id = movie.id) }}">
+                                    <button type="submit" class="btn btn-warning btn-sm">Muokkaa</button>
+                            </form>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-  {% for movie in movies %}
-  <div class="row" style="background-color: #659DBD; margin-bottom: 0px">
-    <div class="col-3">
-        <strong>{{ movie.name }}</strong>
-    </div>
-    <div class="col-2">
-        {{ movie.released }} 
-    </div>
-    <div class="col-3">
-        {% for id in movie.categories %}
-            {{ id.name }}
-        {% endfor %}
-    </div>
-    <div class="col-4">
-        {{ movie.description }} 
-    </div>
-  </div>
-  <div class="row" style="background-color: #e3f2fd; margin-bottom: 10px">
-    <div class="col-6">
-      {% if current_user.admin == True %}
-      <a href="{{ url_for('movies_edit_form', movie_id = movie.id) }}">Muokkaa tietoja</a> <br />
-      {% endif %}
-      {% if current_user.is_authenticated %}
-      <a href="{{ url_for('reviews_form', movie_id = movie.id) }}">Kirjoita arvostelu</a> <br />
-      {% endif %}
-      <a href="{{ url_for('reviews_for_movie', movie_id = movie.id) }}">Lue arvosteluita</a> <br />
-    </div>
-    <div class="col-6">
-      {% if current_user.admin == True %}
-      <form method="POST" action="{{ url_for('movies_delete', movie_id = movie.id) }}">
-          <button type="submit" class="btn btn-danger">Poista</button>
-      </form>
-      {% endif %}
-    </div>
-  </div>
-  {% endfor %}
-
 </div>
+
 {% endblock %}
