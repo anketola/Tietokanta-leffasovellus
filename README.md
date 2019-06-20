@@ -17,8 +17,7 @@ Keskeisiä toimintoja:
 * Kirjautuneen käyttäjän mahdollisuus jättää arvostelu ja muokata/poistaa se
 * Uusimpien arvosteluiden listaaminen etusivulla
 * Arvosteluiden lukeminen ja muu tarkastelu
-* Elokuvien haku nimellä, suodattaminen kategorialla
-* (mahdollisesti jotain yleistä statistiikkaa)
+* Elokuvien selaaminen
 
 ## Sovellus Herokussa
 
@@ -49,3 +48,5 @@ Salasana: testitunnus
 [Käyttötapaukset](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/kayttotapaukset.md)
 
 [Tietokannan rakenne](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/tietokantakaavio.md)
+
+[Työn ja sovelluksen rajoitteet](https://github.com/anketola/Tietokanta-leffasovellus/blob/master/documentation/rajoitteet.md)
