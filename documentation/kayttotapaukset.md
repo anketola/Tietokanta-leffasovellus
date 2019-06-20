@@ -18,6 +18,12 @@ Poikkeuksellinen toiminta: Elokuvaa ei ole listattuna. Tässä tilanteessa taval
 
 Käyttötapauksen kulku: Käyttäjä kirjautuu sisälle omalla käyttäjätunnuksella ja salasanalla. Käyttäjä etsii haluamansa elokuvan niiden listaukseen/hakuun tarkoitetun tarkoitetun linkin kautta. Käyttäjä klikkaa haluamaansa elokuvaa ja sen jälkeen arvostelun lisäämiselle tarkoitettua nappia. Käyttäjälle näytetään lomake, jonka täyttämällä voi lisätä arvostelun. Käyttäjä painaa lähetä-nappia ja arvostelu lisätään osaksi elokuvan tietoja.
 
+```
+INSERT INTO review (rating, reviewtext, account_id, movie_id) VALUES (?, ?, ?, ?);
+
+Jossa account_id on aktiivisen käyttäjän id ja movie_id arvosteltavan elokuvan id.
+```
+
 ***2. Käyttötapaus:** Pääkäyttäjä haluaa lisätä uuden elokuvan sovellukseen.*
 
 Käyttäjä: Pääkäyttäjä.
@@ -29,6 +35,10 @@ Esiehto: Käyttäjällä on nimenomaan pääkäyttäjän valtuudet.
 Jälkiehto: Pääkäyttäjä saa lisättyä elokuvan osaksi listausta.
 
 Käyttötapauksen kulku: Käyttäjä kirjautuu sisään tunnuksilla, jotka oikeuttavat pääkäyttäjän valtuuksiin. Pääkäyttäjällä on näkyvissä erillinen admin-työkalupalkki. Pääkäyttäjä painaa hänelle siinä näkyvää nappia, jolla voi lisätä uuden elokuvan. Käyttäjä täyttää hänelle annettavan lomakkeen. Lomakkeessa annettujen tietojen perusteella luodaan uusi elokuva osaksi listausta. Listattu elokuva näkyy nyt kaikille muille sovlluksen käyttäjille (myös ei rekisteröityneille).
+
+```
+INSERT INTO movie (name, released, description) VALUES (?, ?, ?);
+```
 
 ***3. Käyttötapaus:** Ulkopuolinen käyttäjä haluaa tarkastella tietyn kategorian parhaita arvosanoja saaneita elokuvia.*
 
