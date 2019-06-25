@@ -14,10 +14,12 @@
         <div class="form-group">
           {{ form.username.label  }}
           {{ form.username }}
+          <small id="usernameHelp" class="form-text text-muted">Valitse 5-20 merkkiä pitkä käyttäjänimi.</small>
         </div>
         <div class="form-group">
           {{ form.password.label  }}
           {{ form.password }}
+          <small id="passwordHelp" class="form-text text-muted">Valitse 5-20 merkkiä pitkä salasana.</small>
         </div>
         <button type="submit" class="btn btn-success">Rekisteröidy</button>
       </form>

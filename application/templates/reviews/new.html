@@ -44,7 +44,16 @@
       <button type="submit" class="btn btn-primary">Lähetä arvostelu</button>
       <a class="btn btn-danger" style="align-self: right" href="{{ url_for('reviews_for_movie', movie_id = movie.id) }}" role="button">Peruuta toiminto</a>
     </form>
-    
+  </div>
+  <div class="col-3">
+    <small>
+        <p><strong>Ohjeet</strong></p>
+        <p>Arvostele elokuva valitsemalla sille arvosana sekä kirjoittamalla arvosteluteksti. Arvosana 5 on paras ja 1 huonoin.
+        Huomaa lomaketta täyttäessäsi, että arvostelutekstin pituus on rajoitettu 1000 merkkiin.</p>
+          
+        <p>Kun olet saanut arvostelun valmiiksi, paina "Lähetä arvostelu" -nappia.</p>
+        <p>Jos haluat palata takaisin tallentamatta arvostelua, paina "Peruuta toiminto" -nappia.</p>
+    </small>
   </div>
   </div>  
 </div>
