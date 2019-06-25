@@ -3,6 +3,7 @@ from application.models import Base
 
 from sqlalchemy.sql import text
 
+# User is the entity for a registered / logged in user, the table is renamed as "account" to prevent using reserved words
 class User(Base):
 
     __tablename__ = "account"
@@ -30,12 +31,14 @@ class User(Base):
     def is_authenticated(self):
         return True
    
+    # Returns the appropriate roles, checks if the user has column "admin" as true and returns additionally ADMIN role.
     def roles(self):
         if self.admin == True:
             return ["USER", "ADMIN"]
         else:
             return ["USER"]
     
+    # Query to list all reviews by a certain user, used as part own the users own page
     @staticmethod
     def user_reviews_list(userid):
         stmt = text("SELECT Review.id, Review.rating, Review.date_created, Movie.name, Movie.id FROM Review, Movie"

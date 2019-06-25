@@ -3,6 +3,7 @@ from application.models import Base
 
 from sqlalchemy.sql import text
 
+# Review is the entity that a registered and logged in user gives for a movie
 class Review(Base):
 
     rating = db.Column(db.Integer, nullable=False)
@@ -15,7 +16,7 @@ class Review(Base):
         self.rating = rating
         self.reviewtext = reviewtext
     
-
+    # Query returns the five most recent reviews posted in the application
     @staticmethod
     def list_latest_reviews():
         stmt = text("SELECT Review.id, Review.rating, Review.date_created, Movie.name, Movie.id FROM Review"

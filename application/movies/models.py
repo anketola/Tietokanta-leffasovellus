@@ -3,6 +3,7 @@ from application.models import Base, moviescategories
 
 from sqlalchemy.sql import text
 
+# Movie is the entity that is the object of reviews and it has a many-to-many relationship to categories
 class Movie(Base):
 
     name = db.Column(db.String(144), nullable=False)
@@ -18,6 +19,7 @@ class Movie(Base):
         self.released = released
         self.description = description
     
+    # The query returns a top five list of all rated movies and additionally the average scores for those movies
     @staticmethod
     def list_movies_with_highest_scores():
         stmt = text("SELECT Movie.name, Movie.id, CAST(AVG(Review.rating) AS DECIMAL(10,2)) FROM MOVIE"
@@ -33,6 +35,7 @@ class Movie(Base):
 
         return response
     
+    # Returns latest 5 movies added by the admin
     @staticmethod
     def list_latest_movie_additions():
         stmt = text("SELECT Movie.id, Movie.name, Movie.date_created FROM Movie"
@@ -46,6 +49,7 @@ class Movie(Base):
         
         return response
 
+    # Returns the total number of reviews for a given movie
     @staticmethod
     def review_count_for_movie(movieid):
         stmt = text("SELECT COUNT(Review.id) FROM Movie, Review WHERE Movie.id = Review.movie_id AND Movie.id = :movieid").params(movieid = movieid)
@@ -57,6 +61,7 @@ class Movie(Base):
 
         return response
     
+    # Returns the average rating for a given movie
     @staticmethod
     def average_rating_for_movie(movieid):
         stmt = text("SELECT CAST(AVG(Review.rating) AS DECIMAL(10,2)) FROM Movie, Review WHERE Movie.id = Review.movie_id AND Movie.id = :movieid").params(movieid = movieid)
@@ -68,6 +73,7 @@ class Movie(Base):
 
         return response
     
+    # Query used to list best rated movies in a category, used via form in the "Selaa elokuvia" view
     @staticmethod
     def movies_category_best(categoryid):
         stmt = text("SELECT Movie.id, Movie.name, Movie.released, AVG(Review.rating) FROM Movie"

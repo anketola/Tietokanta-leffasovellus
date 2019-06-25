@@ -5,6 +5,7 @@ from application import app, db, login_required
 from application.auth.models import User
 from application.auth.forms import LoginForm, RegisterForm
 
+# Method for get and post requets for the login function
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
     if request.method == "GET":
@@ -23,15 +24,18 @@ def auth_login():
     login_user(user)
     return redirect(url_for("index"))
 
+# Method for logging out the current user
 @app.route("/auth/logout")
 def auth_logout():
     logout_user()
     return redirect(url_for("index"))
 
+# Returns the view and form for registering a new user
 @app.route("/accounts/new")
 def accounts_form():
     return render_template("auth/new.html", form = RegisterForm())
 
+# Method for post request to register a new user
 @app.route("/accounts/", methods=["POST"])
 def accounts_create():
     form = RegisterForm(request.form)
@@ -39,6 +43,8 @@ def accounts_create():
     if not form.validate():
         return render_template("auth/new.html", form = form)
     
+    # When creating a new user, the admin column is set as False, creating a normal user 
+    # If needed, a new admin has to be created via a direct database access
     a = User(form.username.data, form.password.data, False)
 
     db.session().add(a)
@@ -46,6 +52,7 @@ def accounts_create():
 
     return redirect(url_for("index"))
 
+# Returns the view of own page that contains own reviews, access restricted to users (note that admin has this too)
 @app.route("/ownpage", methods=["GET"])
 @login_required(role="USER")
 def accounts_view_own():

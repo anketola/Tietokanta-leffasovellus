@@ -1,6 +1,7 @@
 from application import db
 from application.models import moviescategories
 
+# Category is the entity that contains entries like "horror", "comedy" etc, and are assigned to a movie
 class Category(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
