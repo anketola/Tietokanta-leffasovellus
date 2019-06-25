@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row" style="margin-top:30px">
         <div class="col-12" style="text-align: center">
-            <h1 >Lisää uusi kategoria</h1>
+            <h1>Lisää uusi kategoria</h1>
         </div>
     </div>
     <div class="row">
@@ -14,6 +14,7 @@
                 <div class="form-group">
                 {{ form.name.label }}
                 {{ form.name }}
+                <small id="nameHelp" class="form-text text-muted">Kategorian nimi voi olla 2-20 merkkiä pitkä.</small>
                 <ul>
                     {% for error in form.name.errors %}
                     <li>{{ error }}</li>
