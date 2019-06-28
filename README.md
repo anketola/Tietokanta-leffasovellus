@@ -2,7 +2,7 @@
 
 ## Aihekuvaus: Leffa-arvostelut
 
-Harjoitustyön aiheena on elokuva-arvosteluja sisältävä järjestelmä. Elokuvien järjestelmän listalle voi lisätä tai poistaa ainoastaan ylläpitäjä. Elokuvalle annetaan lisäämisen yhteydessä tyypillisiä tietoja kuten nimi, julkaisuvuosi ja pituus. Elokuvat luokitellaan kuulumaan yhteen tai useampaan kategoriaan. Ylläpitäjä voi tarvittaessa muokata elokuvien tietoja myöhemmin.
+Harjoitustyön aiheena on elokuva-arvosteluja sisältävä järjestelmä. Elokuvien järjestelmän listalle voi lisätä tai poistaa ainoastaan ylläpitäjä. Elokuvalle annetaan lisäämisen yhteydessä tyypillisiä tietoja kuten nimi ja julkaisuvuosi. Elokuvat luokitellaan kuulumaan yhteen tai useampaan kategoriaan. Ylläpitäjä voi tarvittaessa muokata elokuvien tietoja myöhemmin.
 
 Sovellukseen voi rekisteröityä käyttäjäksi. Kirjautuneet käyttäjät voivat kirjoittaa arvosteluja ja antaa arvosanan listatuille elokuville. Käyttäjät voivat halutessaan muokata tai poistaa jälkikäteen itse tekemänsä arvostelun. Käyttäjät voivat katsella myös kootusti kaikkia tekemiään arvosteluja.
 
